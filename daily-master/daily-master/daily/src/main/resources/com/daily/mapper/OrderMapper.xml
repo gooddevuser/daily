@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daily.mapper.OrderMapper">
+	
+	<insert id="insertOrderByPnoAndUnoAndOno" parameterType="com.daily.vo.Order">
+		insert into daily_order(
+		pno,uno,content,
+		cardnumber,cardname,carddate,
+		uname,nickname,gender,
+		age,address1,address2,
+		email,url,interest,
+		pname,content1,category1,
+		category2,content2,size,
+		color,pcode,zip,id,
+		tel,price,quantity,
+		star,saleprice,discount
+		)
+		values(
+		#{pno},#{uno},#{content},
+		#{cardnumber},#{cardname},#{carddate},
+		#{uname},#{nickname},#{gender},
+		#{age},#{address1},#{address2},
+		#{email},#{url},#{interest},
+		#{pname},#{content1},#{category1},
+		#{category2},#{content2},#{size},
+		#{color},#{pcode},#{zip},#{id},
+		#{tel},#{price},#{quantity},
+		#{star},#{saleprice},#{discount}
+		)
+	</insert>
+	<update id="updateOrderByUno" parameterType="com.daily.vo.Order">
+		update daily_order
+		set content = #{content}, cardnumber = #{cardnumber},cardname = #{cardname},
+			carddate = #{carddate},oactive = #{oactive}
+		where uno = #{uno}
+	</update>
+	
+	<select id="selectOrderByUno" parameterType="com.daily.vo.Order" resultType="com.daily.vo.Order">
+		SELECT *
+		FROM daily_order o
+		INNER JOIN daily_user u
+		ON o.uno = u.uno
+		INNER JOIN daily_product p
+		ON o.pno = p.pno				
+		where u.uno = #{uno} and o.oactive = '0'
+	</select>
+		
+	<select id="selectOrderByTotalPrice" parameterType="com.daily.vo.Order" resultType="int">
+		SELECT SUM(o.saleprice*o.quantity)
+		FROM daily_order o
+		INNER JOIN daily_user u
+		ON o.uno = u.uno
+		INNER JOIN daily_product p
+		ON o.pno = p.pno				
+		where u.uno = #{uno} and o.oactive = '0'
+	</select>					
+	
+	<select id="selectFinishOrderByUno" parameterType="com.daily.vo.Order" resultType="com.daily.vo.Order">
+		SELECT *
+		FROM daily_order o
+		INNER JOIN daily_user u
+		ON o.uno = u.uno
+		INNER JOIN daily_product p
+		ON o.pno = p.pno				
+		where u.uno = #{uno} and o.oactive != '0'
+	</select>
+	
+	<delete id="deleteOrderByOno" parameterType="com.daily.vo.Order">
+		DELETE 
+		FROM daily_order
+		where ono = #{ono} and oactive = '0'
+	</delete>
+	
+	<select id="selectOrder" resultType="com.daily.vo.Order">
+		select *
+		from daily_order
+		where oactive != '0'
+	</select>
+	
+	<select id="selectOrder1" resultType="com.daily.vo.Order">
+		select *
+		from daily_order
+		where odate != 'null' AND cardnumber != 'null' AND content != 'null' AND cardnumber != 'null' AND cardname != 'null' AND carddate != 'null'
+		LIMIT 5;    
+	</select>
+	
+	<select id="selectOrderByOactive1" parameterType="com.daily.vo.Order" resultType="com.daily.vo.Order">
+		SELECT *
+		FROM daily_order o
+		INNER JOIN daily_user u
+		ON o.uno = u.uno
+		INNER JOIN daily_product p
+		ON o.pno = p.pno				
+		where u.uno = #{uno} and
+		o.oactive = '1' or o.oactive = '2' or o.oactive = '3' or o.oactive = '4' or o.oactive = '5'
+	</select>
+	
+	<select id="selectOrderByOactive2" parameterType="com.daily.vo.Order" resultType="com.daily.vo.Order">
+		SELECT *
+		FROM daily_order o
+		INNER JOIN daily_user u
+		ON o.uno = u.uno
+		INNER JOIN daily_product p
+		ON o.pno = p.pno				
+		where u.uno = #{uno} and
+		o.oactive = '6' or o.oactive = '7' or o.oactive = '8' or o.oactive = '9' or 
+		o.oactive = '10' or o.oactive = '11' or o.oactive = '12' or o.oactive = '13'
+	</select>
+	
+	<update id="updateOrderByOno1" parameterType="com.daily.vo.Order">
+		update daily_order
+		set oactive = '2'
+		where ono = #{ono}
+	</update>
+	
+	<update id="updateOrderByOno2" parameterType="com.daily.vo.Order">
+		update daily_order
+		set oactive = '7'
+		where ono = #{ono}
+	</update>
+	
+	<update id="updateOrderByOno3" parameterType="com.daily.vo.Order">
+		update daily_order
+		set oactive = '9'
+		where ono = #{ono}
+	</update>
+	
+	<update id="updateOrderByOno4" parameterType="com.daily.vo.Order">
+		update daily_order
+		set oactive = '11'
+		where ono = #{ono}
+	</update>
+	
+	<update id="updateOrderByOno5" parameterType="com.daily.vo.Order">
+		update daily_order
+		set oactive = '13'
+		where ono = #{ono}
+	</update>
+	
+	<update id="updateOrderByOno6" parameterType="com.daily.vo.Order">
+		update daily_order
+		set oactive = '6'
+		where ono = #{ono}
+	</update>
+	
+	<update id="updateOrderByOno7" parameterType="com.daily.vo.Order">
+		update daily_order
+		set oactive = '8'
+		where ono = #{ono}
+	</update>
+	
+	<update id="updateOrderByOno8" parameterType="com.daily.vo.Order">
+		update daily_order
+		set oactive = '10'
+		where ono = #{ono}
+	</update>
+	
+	<update id="updateOrderByOno9" parameterType="com.daily.vo.Order">
+		update daily_order
+		set oactive = '12'
+		where ono = #{ono}
+	</update>
+	
+	<update id="updateOrderByOno10" parameterType="com.daily.vo.Order">
+		update daily_order
+		set oactive = '5'
+		where ono = #{ono}
+	</update>
+	
+	<select id="selectSumSaleprice" resultType="int">
+		SELECT SUM(saleprice*quantity)
+		FROM daily_order
+	</select>
+	
+	<select id="selectAvgSaleprice" resultType="int">
+		SELECT AVG(saleprice*quantity)
+		FROM daily_order
+	</select>
+	
+	<update id="updateRefundByOno" parameterType="com.daily.vo.Order">
+		update daily_order
+		set refund = '1'
+		where ono = #{ono}
+	</update>
+	
+	<update id="updateOrderByOno11" parameterType="com.daily.vo.Order">
+		update daily_order
+		set oactive = '3'
+		where ono = #{ono}
+	</update>
+	
+	<update id="updateOrderByOno12" parameterType="com.daily.vo.Order">
+		update daily_order
+		set oactive = '4'
+		where ono = #{ono}
+	</update>
+	
+	<select id="selectSumRefundSaleprice" resultType="int">
+		SELECT SUM(saleprice*quantity)		
+		FROM daily_order
+		where refund = '1'
+	</select>
+	
+	<select id="selectAvgSaleSaleprice" resultType="int">
+		SELECT AVG(price-saleprice)
+		FROM daily_order
+	</select>	
+	
+	<select id="selectSumSalepriceBy1Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 1 DAY);
+	</select>
+	<select id="selectSumSalepriceBy2Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 2 DAY);
+	</select>
+	<select id="selectSumSalepriceBy3Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 3 DAY);
+	</select>
+	<select id="selectSumSalepriceBy4Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 4 DAY);
+	</select>
+	<select id="selectSumSalepriceBy5Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 5 DAY);
+	</select>
+	<select id="selectSumSalepriceBy6Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 6 DAY);
+	</select>
+	<select id="selectSumSalepriceBy7Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 7 DAY);
+	</select>
+	<select id="selectSumSalepriceBy8Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 8 DAY);
+	</select>
+	<select id="selectSumSalepriceBy9Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 9 DAY);
+	</select>
+	
+	<select id="selectAvgSalepriceBy1Day" resultType="int">
+		SELECT IFNULL(AVG(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 1 DAY);
+	</select>
+	<select id="selectAvgSalepriceBy2Day" resultType="int">
+		SELECT IFNULL(AVG(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 2 DAY);
+	</select>
+	<select id="selectAvgSalepriceBy3Day" resultType="int">
+		SELECT IFNULL(AVG(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 3 DAY);
+	</select>
+	<select id="selectAvgSalepriceBy4Day" resultType="int">
+		SELECT IFNULL(AVG(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 4 DAY);
+	</select>	
+	<select id="selectAvgSalepriceBy5Day" resultType="int">
+		SELECT IFNULL(AVG(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 5 DAY);
+	</select>
+	<select id="selectAvgSalepriceBy6Day" resultType="int">
+		SELECT IFNULL(AVG(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 6 DAY);
+	</select>
+	<select id="selectAvgSalepriceBy7Day" resultType="int">
+		SELECT IFNULL(AVG(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 7 DAY);
+	</select>
+	<select id="selectAvgSalepriceBy8Day" resultType="int">
+		SELECT IFNULL(AVG(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 8 DAY);
+	</select>	
+	<select id="selectAvgSalepriceBy9Day" resultType="int">
+		SELECT IFNULL(AVG(saleprice*quantity), 0)
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 9 DAY);
+	</select>
+	
+	<select id="selectSumRefundSalepriceBy1Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)	
+		FROM daily_order
+		where refund = '1' and odate > (NOW() - INTERVAL 1 DAY);
+	</select>
+	<select id="selectSumRefundSalepriceBy2Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)		
+		FROM daily_order
+		where refund = '1' and odate > (NOW() - INTERVAL 2 DAY);
+	</select>
+	<select id="selectSumRefundSalepriceBy3Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)	
+		FROM daily_order
+		where refund = '1' and odate > (NOW() - INTERVAL 3 DAY);
+	</select>
+	<select id="selectSumRefundSalepriceBy4Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)		
+		FROM daily_order
+		where refund = '1' and odate > (NOW() - INTERVAL 4 DAY);
+	</select>
+	<select id="selectSumRefundSalepriceBy5Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)			
+		FROM daily_order
+		where refund = '1' and odate > (NOW() - INTERVAL 5 DAY);
+	</select>
+	<select id="selectSumRefundSalepriceBy6Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)		
+		FROM daily_order
+		where refund = '1' and odate > (NOW() - INTERVAL 6 DAY);
+	</select>
+	<select id="selectSumRefundSalepriceBy7Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)			
+		FROM daily_order
+		where refund = '1' and odate > (NOW() - INTERVAL 7 DAY);
+	</select>
+	<select id="selectSumRefundSalepriceBy8Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)		
+		FROM daily_order
+		where refund = '1' and odate > (NOW() - INTERVAL 8 DAY);
+	</select>	
+	<select id="selectSumRefundSalepriceBy9Day" resultType="int">
+		SELECT IFNULL(SUM(saleprice*quantity), 0)		
+		FROM daily_order
+		where refund = '1' and odate > (NOW() - INTERVAL 9 DAY);
+	</select>
+	
+	<select id="selectAvgSaleSalepriceBy1Day" resultType="int">
+		SELECT IFNULL(AVG(price-saleprice), 0)	
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 1 DAY);
+	</select>	
+	<select id="selectAvgSaleSalepriceBy2Day" resultType="int">
+		SELECT IFNULL(AVG(price-saleprice), 0)	
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 2 DAY);
+	</select>	
+	<select id="selectAvgSaleSalepriceBy3Day" resultType="int">
+		SELECT IFNULL(AVG(price-saleprice), 0)	
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 3 DAY);
+	</select>	
+	<select id="selectAvgSaleSalepriceBy4Day" resultType="int">
+		SELECT IFNULL(AVG(price-saleprice), 0)	
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 4 DAY);
+	</select>		
+	<select id="selectAvgSaleSalepriceBy5Day" resultType="int">
+		SELECT IFNULL(AVG(price-saleprice), 0)	
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 5 DAY);
+	</select>	
+	<select id="selectAvgSaleSalepriceBy6Day" resultType="int">
+		SELECT IFNULL(AVG(price-saleprice), 0)	
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 6 DAY);
+	</select>	
+	<select id="selectAvgSaleSalepriceBy7Day" resultType="int">
+		SELECT IFNULL(AVG(price-saleprice), 0)	
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 7 DAY);
+	</select>	
+	<select id="selectAvgSaleSalepriceBy8Day" resultType="int">
+		SELECT IFNULL(AVG(price-saleprice), 0)	
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 8 DAY);
+	</select>	
+	<select id="selectAvgSaleSalepriceBy9Day" resultType="int">
+		SELECT IFNULL(AVG(price-saleprice), 0)	
+		FROM daily_order
+		WHERE odate > (NOW() - INTERVAL 9 DAY);
+	</select>	
+</mapper>

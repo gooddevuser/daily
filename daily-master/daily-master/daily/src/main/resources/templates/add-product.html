@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+ 
+<head>
+    <head th:include="head :: head"> </head>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+         <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <header th:include="header :: header"> </header>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <sidebar th:include="sidebar :: sidebar"> </sidebar>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">            
+                    <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- valifation types -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">상품등록</h5>
+                                <div class="card-body">
+                                    <form id="add-product" data-parsley-validate="" novalidate="" method="post">
+                                    <input type="hidden" name="pactive" th:if="${session.loginuser != null} or ${session.loginuser == null}" th:value="9">
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">카테고리1</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <select class="custom-select d-block w-100" id="category1" name="category1" >
+                                                    <option value="1">제습│청소</option>
+                                                    <option value="2">주방│세탁</option>
+                                                    <option value="3">구강│청결</option>
+                                                    <option value="4">뷰티│케어</option>
+                                                    <option value="5">수납│욕실</option>
+                                                    <option value="6">식품</option>
+                                                </select>
+                                            </div>
+                                        </div>     
+                                        <div class="form-group row category2">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">카테고리2</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <select class="custom-select d-block w-100" id="country" name="category2">
+                                                    <option class="category1option" value="1">제습제</option>
+                                                    <option class="category1option" value="2">베이킹소다|구연산</option>
+                                                    <option class="category1option" value="3">곰팡이제거제</option>
+                                                    <option class="category1option" value="4">락스|배수구세정제</option>
+                                                    <option class="category1option" value="5">변기세정제</option>
+                                                    <option class="category2option" value="6">세탁세제</option>
+                                                    <option class="category2option" value="7">세탁조세정제</option>
+                                                    <option class="category2option" value="8">주방세제</option>
+                                                    <option class="category2option" value="9">주방잡화</option>
+                                                    <option class="category3option" value="10">치약</option>
+                                                    <option class="category3option" value="11">칫솔</option>
+                                                    <option class="category3option" value="12">구강청정제</option>
+                                                    <option class="category3option" value="13">핸드워시</option>
+                                                    <option class="category4option" value="14">핸드크림</option>
+                                                    <option class="category4option" value="15">헤어케어</option>
+                                                    <option class="category4option" value="16">시트 마스크</option>
+                                                    <option class="category4option" value="17">쿨링패치</option>
+                                                </select>
+                                            </div>
+                                        </div>                      
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">상품명</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input name="pname" type="text"  data-parsley-minlength="3" placeholder="3글자 이상의 닉네임" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">간략한설명</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input name="content1" type="text"  data-parsley-minlength="3" placeholder="간략한설명" class="form-control">
+                                            </div>
+                                        </div>   
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">상품예정가격</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input name="price" type="text"  placeholder="1,000원부터 1,000,000원 까지 입력" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">수량</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input name="quantity" type="text"  data-parsley-length="[1,1000000]" placeholder="1개부터 1,000,000개 까지 입력" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">상품 페이지 내용</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+						                            <div class="form-group">
+						                                <label class="form-control control-label sr-only" for="summernote">Descriptions </label>
+						                                <textarea name="content2" class="form-control" id="summernote" rows="6" placeholder="Write Descriptions"></textarea>
+						                            </div>
+						                    </div>
+                                        </div>                                        
+                    
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">별점</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <select class="custom-select d-block w-100" id="country" name="star" >
+                                                	<option value="5" checked="">5점</option>
+                                                    <option value="4">4점</option>
+                                                    <option value="3">3점</option>
+                                                    <option value="2">2점</option>
+                                                    <option value="1">1점</option>
+                                                    <option value="0">0점</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">사이즈</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <select class="custom-select d-block w-100" id="country" name="size" >
+                                                    <option value="Small">Small</option>   
+                                                    <option value="Medium">Medium</option>
+                                                    <option value="Large">Large</option>
+                                                    <option value="Extra Large">Extra Large</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">컬러</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <select class="custom-select d-block w-100" id="country" name="color">
+                                                    	<option value='파랑'>파랑</option>
+				                                        <option value='노랑'>노랑</option>
+				                                        <option value='빨강'>빨강</option>
+				                                        <option value='초록'>초록</option>
+				                                        <option value='주황'>주황</option>
+				                                        <option value='남색'>남색</option>
+				                                        <option value='보라'>보라</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">판매단가</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input name="saleprice" type="text" placeholder="실제로 판매할 단위금액 입력" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">등록코드</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input name="pcode" data-parsley-type="number" type="text"  placeholder="숫자만 입력" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">추가할인가능여부</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <div class="custom-control custom-radio">
+                                                    <input id="discount" name="discount" value="1" type="radio" class="custom-control-input" checked="" >
+                                                    <label class="custom-control-label" for="credit1">할인 가능</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input id="discount" name="discount" value="2"  type="radio" class="custom-control-input" >
+                                                    <label class="custom-control-label" for="credit2">할인 불가</label>
+                                                </div>                                                    
+                                            </div>
+                                        </div>                                                                
+                                        <div class="form-group row text-right">
+                                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                                <button type="submit" class="btn btn-space btn-primary">상품등록</button>
+                                                <button class="btn btn-space btn-secondary">뒤로</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end valifation types -->
+                        <!-- ============================================================== -->
+                    </div>           
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="../assets/vendor/parsley/parsley.js"></script>
+    <script src="../assets/libs/js/main-js.js"></script>
+    <script src="../assets/vendor/datepicker/datepicker.js"></script>
+    <script src="../assets/vendor/datepicker/moment.js"></script>
+    <script src="../assets/vendor/datepicker/tempusdominus-bootstrap-4.js"></script>
+    <script src="../assets/vendor/multi-select/js/jquery.multi-select.js"></script>
+    <script src="../assets/vendor/select2/js/select2.min.js"></script>
+    <script src="../assets/vendor/summernote/js/summernote-bs4.js"></script>
+    <!-- This Page JS -->
+    <script src="../assets/vendor/bootstrap-colorpicker/jquery-asColor/dist/jquery-asColor.min.js"></script>
+    <script src="../assets/vendor/bootstrap-colorpicker/jquery-asGradient/dist/jquery-asGradient.js"></script>
+    <script src="../assets/vendor/bootstrap-colorpicker/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+    <script src="../assets/vendor/bootstrap-colorpicker/%40claviska/jquery-minicolors/jquery.minicolors.min.js"></script>
+    <script>
+    $('#form').parsley();
+    </script>
+    <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+    </script>
+    <script>
+    $('#my-select, #pre-selected-options').multiSelect()
+    </script>
+    <script>
+    $('#callbacks').multiSelect({
+        afterSelect: function(values) {
+            alert("Select value: " + values);
+        },
+        afterDeselect: function(values) {
+            alert("Deselect value: " + values);
+        }
+    });
+    </script>
+    <script>
+    $('#keep-order').multiSelect({ keepOrder: true });
+    </script>
+    <script>
+    $('#public-methods').multiSelect();
+    $('#select-all').click(function() {
+        $('#public-methods').multiSelect('select_all');
+        return false;
+    });
+    $('#deselect-all').click(function() {
+        $('#public-methods').multiSelect('deselect_all');
+        return false;
+    });
+    $('#select-100').click(function() {
+        $('#public-methods').multiSelect('select', ['elem_0', 'elem_1'..., 'elem_99']);
+        return false;
+    });
+    $('#deselect-100').click(function() {
+        $('#public-methods').multiSelect('deselect', ['elem_0', 'elem_1'..., 'elem_99']);
+        return false;
+    });
+    $('#refresh').on('click', function() {
+        $('#public-methods').multiSelect('refresh');
+        return false;
+    });
+    $('#add-option').on('click', function() {
+        $('#public-methods').multiSelect('addOption', { value: 42, text: 'test 42', index: 0 });
+        return false;
+    });
+    </script>
+    <script>
+    $('#optgroup').multiSelect({ selectableOptgroup: true });
+    </script>
+    <script>
+    $('#disabled-attribute').multiSelect();
+    </script>
+    <script>
+    $('#custom-headers').multiSelect({
+        selectableHeader: "<div class='custom-header'>Selectable items</div>",
+        selectionHeader: "<div class='custom-header'>Selection items</div>",
+        selectableFooter: "<div class='custom-header'>Selectable footer</div>",
+        selectionFooter: "<div class='custom-header'>Selection footer</div>"
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({ tags: true });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 300
+
+        });
+    });
+    </script>    
+    <script>
+    $('.demo').each(function() {
+        //
+        // Dear reader, it's actually very easy to initialize MiniColors. For example:
+        //
+        //  $(selector).minicolors();
+        //
+        // The way I've done it below is just for the demo, so don't get confused
+        // by it. Also, data- attributes aren't supported at this time...they're
+        // only used for this demo.
+        //
+        $(this).minicolors({
+            control: $(this).attr('data-control') || 'hue',
+            defaultValue: $(this).attr('data-defaultValue') || '',
+            format: $(this).attr('data-format') || 'hex',
+            keywords: $(this).attr('data-keywords') || '',
+            inline: $(this).attr('data-inline') === 'true',
+            letterCase: $(this).attr('data-letterCase') || 'lowercase',
+            opacity: $(this).attr('data-opacity'),
+            position: $(this).attr('data-position') || 'bottom left',
+            swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
+            change: function(value, opacity) {
+                if (!value) return;
+                if (opacity) value += ', ' + opacity;
+                if (typeof console === 'object') {
+                    console.log(value);
+                }
+            },
+            theme: 'bootstrap'
+        });
+
+    });
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+	$('.category2option').hide();
+	$('.category3option').hide();
+	$('.category4option').hide();
+	
+	$('#category1').change(function() {
+		var state = jQuery('#category1 option:selected').val();
+		if ( state == '1' ) {
+			$('.category2').show();
+			$('.category1option').show();
+			$('.category2option').hide();
+			$('.category3option').hide();
+			$('.category4option').hide();
+			
+		} else if ( state == '2' ) {
+			$('.category2').show();
+			$('.category1option').hide();
+			$('.category2option').show();
+			$('.category3option').hide();
+			$('.category4option').hide();
+			
+		} else if ( state == '3' ) {
+			$('.category2').show();
+			$('.category1option').hide();
+			$('.category2option').hide();
+			$('.category3option').show();
+			$('.category4option').hide();
+			
+		} else if ( state == '5' ) {			
+			$('.category1option').hide();
+			$('.category2option').hide();
+			$('.category3option').hide();
+			$('.category4option').hide();
+			$('.category2').hide();
+			
+		} else if ( state == '6' ) {			
+			$('.category1option').hide();
+			$('.category2option').hide();
+			$('.category3option').hide();
+			$('.category4option').hide();
+			$('.category2').hide();
+			
+		} else {
+			$('.category2').show();
+			$('.category1option').hide();
+			$('.category2option').hide();
+			$('.category3option').hide();
+			$('.category4option').show();			
+			
+		}; 
+	});
+	</script>
+</body>
+ 
+</html>

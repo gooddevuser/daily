@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daily.mapper.ProductMapper">
+
+	<insert id="insertProduct" parameterType="com.daily.vo.Product">
+	insert into daily_product(
+			pname,category1,category2,content1,content2,
+			price,quantity,star,size,color,saleprice,
+			pcode,discount,pactive
+			)
+	values(
+			#{pname},#{category1},#{category2},#{content1},#{content2},
+			#{price},#{quantity},#{star},#{size},#{color},#{saleprice},
+			#{pcode},#{discount},#{pactive}
+			)
+	</insert>
+	
+	<select id="selectProduct" resultType="com.daily.vo.Product">
+	select *
+	from daily_product
+	where pactive = '0'
+	</select>
+	
+	<select id="selectProductByAdmin" resultType="com.daily.vo.Product">
+	select *
+	from daily_product
+	</select>
+	
+	<select id="selectProductByCategory" parameterType="com.daily.vo.Product" resultType="com.daily.vo.Product">
+	select *
+	from daily_product
+	where category1 = #{category1} AND category2 = #{category2} OR category1 = #{category1}
+	</select>
+	
+	<select id="selectProductByPno" parameterType="int" resultType="com.daily.vo.Product">
+	select *
+	from daily_product
+	where pno = #{pno}
+	</select>
+	
+	<update id="updateProductByPno" parameterType="com.daily.vo.Product">
+	update daily_product
+	set category1 = #{category1},category2 = #{category2},content1 = #{content1}, content2 = #{content2},
+			price = #{price}, quantity = #{quantity}, star =#{star}, size = #{size},color =#{color}, saleprice = #{saleprice},
+			pcode = #{pcode}, discount = #{discount}
+	where pno = #{pno}
+	</update>
+	
+	<resultMap type="com.daily.vo.Order" id="orderMap">
+		<id column="ono" property="ono" />
+		<result column="odate" property="odate" />
+		<result column="content" property="content" />
+		<result column="cardnumber" property="cardnumber" />
+		<result column="cardname" property="cardname" />
+		<result column="carddate" property="carddate" />		
+		<association property="User" column="uno" resultMap="userMap" />
+		<association property="Product" column="pno" resultMap="productMap" />
+	</resultMap>
+	<resultMap type="com.daily.vo.User" id="userMap" >
+		<id column="uno" property="uno" />
+		<result column="udate" property="udate" />
+		<result column="name" property="name" />
+		<result column="id" property="id" />
+		<result column="nickname" property="nickname" />
+		<result column="gender" property="gender" />
+		<result column="age" property="age" />
+		<result column="pwd" property="pwd" />
+		<result column="repwd" property="repwd" />
+		<result column="address1" property="address1" />
+		<result column="zip" property="zip" />
+		<result column="address2" property="address2" />
+		<result column="email" property="email" />
+		<result column="url" property="url" />
+		<result column="tel" property="tel" />
+		<result column="interest" property="interest" />
+		<result column="content" property="content" />		
+	</resultMap>	
+	<resultMap type="com.daily.vo.Product" id="productMap" >
+		<id column="pno" property="pno" />
+		<result column="pdate" property="pdate" />
+		<result column="pname" property="pname" />
+		<result column="category1" property="category1" />
+		<result column="category2" property="category2" />
+		<result column="content1" property="content1" />
+		<result column="content2" property="content2" />
+		<result column="price" property="price" />
+		<result column="quantity" property="quantity" />
+		<result column="star" property="star" />
+		<result column="size" property="size" />
+		<result column="color" property="color" />
+		<result column="saleprice" property="saleprice" />
+		<result column="pcode" property="pcode" />
+		<result column="discount" property="discount" />
+	</resultMap>
+	
+	<select id="selectProductByOnoByPnoByUno1" parameterType="com.daily.vo.User" resultType="com.daily.vo.Product">
+		SELECT *
+		FROM daily_order o
+		INNER JOIN daily_user u
+		ON o.uno = u.uno
+		INNER JOIN daily_product p
+		ON o.pno = p.pno				
+		where u.uno = #{uno} and o.oactive = '1'
+	</select>
+	
+	<select id="selectProductsByCategory1" parameterType="int" resultType="com.daily.vo.Product">
+		select *
+		from daily_product
+		where category1 = #{category1}
+		LIMIT 3;
+	</select>
+	<!-- 갯수 더 알아보기  -->
+	
+	<update id="updateProduct1" parameterType="com.daily.vo.User">
+		update daily_product
+		set pactive = '0'
+		where pno = #{pno}
+	</update>
+	
+	<select id="selectCategoryCount" parameterType="int" resultType="int">
+		SELECT IFNULL(COUNT(*), 0)
+		FROM daily_product
+		WHERE category1 = #{Count}
+	</select>
+	
+</mapper>
+
+
+
+
+

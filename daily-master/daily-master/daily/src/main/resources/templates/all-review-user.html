@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <head th:include="head :: head"> </head>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <header th:include="header :: header"> </header>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <sidebar th:include="sidebar :: sidebar"> </sidebar>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="influence-finder">
+                <div class="container-fluid dashboard-content">
+                    
+                    <!-- ============================================================== -->
+                    <!-- content -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+                        <h5 class="card-header">나의 후기 목록</h5>
+                            <!-- ============================================================== -->
+                            <!-- card influencer one -->
+                            <!-- ============================================================== -->
+                            <div class="card" th:if="${ #lists.size(reviews) } > 0" th:each="review : ${ reviews }">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="pl-xl-3">
+                                                    <div class="m-b-0">
+                                                    <div class="product-rating d-inline-block">
+                                                		<div th:if="${review.rstar == 0}">
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${review.rstar == 1}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${review.rstar == 2}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${review.rstar == 3}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                    <div th:if="${review.rstar == 4}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                    <div th:if="${review.rstar == 5}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    </div>
+                                                	</div>
+                                                    	<h5 th:text="리뷰번호 + ' : ' +${review.rstar} + ' │ ' + 리뷰날짜 + ' : ' +${review.rdate}"></h5>
+                                                        <h3 th:text="제목 + ' : ' +${review.title}"></h3>                                                            
+                                                    </div>
+                                                    <div class="user-avatar-address">
+                                                    <p class="mb-2" th:text="${review.review}"></p>                                                        
+                                                    </div>                                                    
+                                                </div>
+                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ============================================================== -->
+                                <!-- end card influencer one -->
+                                <!-- ============================================================== -->                                
+
+                                <!-- ============================================================== -->
+                                <!-- end content -->
+                                <!-- ============================================================== -->
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- influencer sidebar  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">                            
+                            <h5 class="card-header">검색</h5>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="font-16">정렬기준</h3>
+                                        <select class="form-control">
+                                            <option>제목순</option>
+                                            <option>가나다순</option>
+                                        </select>
+                                    </div>
+                                    <div class="card-body border-top">
+                                        <h3 class="font-16">카테고리순</h3>
+                                        <select class="form-control">
+                                            <option selected>카테고리순 선택하세요</option>
+                                            <option value="카테고리 1#">카테고리 1#</option>
+                                            <option value="카테고리 2#">카테고리 2#</option>
+                                            <option value="카테고리 3#">카테고리 3#</option>
+                                        </select>
+                                    </div>
+                                    <div class="card-body border-top">
+                                        <h3 class="font-16">나이순</h3>
+                                        <select class="form-control">
+                                            <option selected>나이순 선택하세요</option>
+                                            <option value="20-30">20-30</option>
+                                            <option value="30-40">30-40</option>
+                                            <option value="40-50">40-50</option>
+                                        </select>
+                                    </div>
+                                    <div class="card-body border-top">
+                                        <a href="#" class="btn btn-secondary btn-lg btn-block">검색하기</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end influencer sidebar  -->
+                            <!-- ============================================================== -->
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end wrapper  -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- end main wrapper  -->
+            <!-- ============================================================== -->
+            <!-- Optional JavaScript -->
+            <!-- jquery 3.3.1 -->
+            <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+            <!-- bootstap bundle js -->
+            <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+            <!-- slimscroll js -->
+            <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+            <!-- main js -->
+            <script src="assets/libs/js/main-js.js"></script>
+</body>
+ 
+</html>

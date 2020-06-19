@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <head th:include="head :: head"> </head>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <header th:include="header :: header"> </header>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <sidebar th:include="sidebar :: sidebar"> </sidebar>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="influence-finder">
+                <div class="container-fluid dashboard-content">
+                    
+                    <!-- ============================================================== -->
+                    <!-- content -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+                        <h5 class="card-header">문의 목록</h5>
+                            <!-- ============================================================== -->
+                            <!-- card influencer one -->
+                            <!-- ============================================================== -->
+                            <div class="card" th:if="${ #lists.size(qnas) } > 0" th:each="qna : ${ qnas }">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="pl-xl-3">
+                                                    <div class="m-b-0">
+                                                    	<h5 th:text="문의번호 + ' : ' +${qna.qno} + ' │ ' + 문의날짜 + ' : ' +${qna.qdate}"></h5>                        
+                                                            <h3 th:text="카테고리 + ' : ' +${qna.qcategory}"></h3>  
+                                                            <h3 th:text="제목 + ' : ' +${qna.qtitle}"></h3>                                                            
+                                                    </div>
+                                                    <div class="user-avatar-address">
+                                                    <p class="mb-2" th:text="${qna.qname}"></p>                                                        
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ============================================================== -->
+                                <!-- end card influencer one -->
+                                <!-- ============================================================== -->                                
+
+                                <!-- ============================================================== -->
+                                <!-- end content -->
+                                <!-- ============================================================== -->
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- influencer sidebar  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">                            
+                            <h5 class="card-header">검색</h5>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="font-16">정렬기준</h3>
+                                        <select class="form-control">
+                                            <option>제목순</option>
+                                            <option>가나다순</option>
+                                        </select>
+                                    </div>
+                                    <div class="card-body border-top">
+                                        <h3 class="font-16">문의유형순</h3>
+                                        <select class="form-control">
+                                            <option selected>문의유형순 선택하세요</option>
+                                            <option value="카테고리 1#">문의유형 1#</option>
+                                            <option value="카테고리 2#">문의유형 2#</option>
+                                            <option value="카테고리 3#">문의유형 3#</option>
+                                        </select>
+                                    </div>
+                                    <div class="card-body border-top">
+                                        <h3 class="font-16">나이순</h3>
+                                        <select class="form-control">
+                                            <option selected>나이순 선택하세요</option>
+                                            <option value="20-30">20-30</option>
+                                            <option value="30-40">30-40</option>
+                                            <option value="40-50">40-50</option>
+                                        </select>
+                                    </div>
+                                    <div class="card-body border-top">
+                                        <a href="#" class="btn btn-secondary btn-lg btn-block">검색하기</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end influencer sidebar  -->
+                            <!-- ============================================================== -->
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end wrapper  -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- end main wrapper  -->
+            <!-- ============================================================== -->
+            <!-- Optional JavaScript -->
+            <!-- jquery 3.3.1 -->
+            <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+            <!-- bootstap bundle js -->
+            <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+            <!-- slimscroll js -->
+            <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+            <!-- main js -->
+            <script src="assets/libs/js/main-js.js"></script>
+</body>
+ 
+</html>

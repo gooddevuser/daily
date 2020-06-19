@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+ 
+<head>
+    <head th:include="head :: head"> </head>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+       <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <header th:include="header :: header"> </header>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <sidebar th:include="sidebar :: sidebar"> </sidebar>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="influence-profile">
+                <div class="container-fluid dashboard-content ">
+                    <!-- ============================================================== -->
+                    <!-- content -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- profile -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
+                            <!-- ============================================================== -->
+                            <!-- card profile -->
+                            <!-- ============================================================== -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="user-avatar text-center d-block">
+                                        <img src="assets/images/avatar-1.jpg" alt="User Avatar" class="rounded-circle user-avatar-xxl">
+                                    </div>
+                                    <div class="text-center">
+                                        <h2 class="font-24 mb-0" th:text="'성함 :'+' '+${user.uname}" ></h2>
+                                        <p th:text="'아이디 :'+' '+ ${user.id} +' │ '+'닉네임 :'+' '+${user.nickname}"></p>
+                                    </div>
+                                </div>
+                                <div class="card-body border-top">
+                                    <h3 class="font-16">회원 정보</h3>
+                                    <div class="">
+                                        <ul class="list-unstyled mb-0">
+                                        <i class="fas fa-fw fa-envelope mr-2" ></i><li class="mb-2" style="display: inline;" th:text="'이메일 :'+' '+${user.email}"></li><br>
+                                        <i class="fas fa-fw fa-phone mr-2 mt-3" ></i><li class="mb-0" style="display: inline;" th:text="'전화번호 :'+' '+${user.tel}"></li>
+                                    </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body border-top">
+                                    <h3 class="font-16">포인트</h3>
+                                    <h1 class="mb-0" th:text="${user.upoint}+포인트"></h1>
+                                    <div class="rating-star">
+                                        				<div th:if="${user.star == 0}">
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${user.star == 1}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${user.star == 2}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${user.star == 3}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                    <div th:if="${user.star == 4}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                    <div th:if="${user.star == 5}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    </div>                                      
+                                        <p class="d-inline-block text-dark">14 리뷰(작업중) </p>
+                                    </div>
+                                </div>
+                                <div class="card-body border-top">
+                                    <h3 class="font-16">관심사</h3>
+                                    <div class="">
+                                        <ul class="mb-0 list-unstyled">                                        
+                                        <li th:if="${user.interest == '스포츠'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-facebook-square mr-1 facebook-color"></i>관심사 : 스포츠</a></li>
+                                        <li th:if="${user.interest == '게임'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-twitter-square mr-1 twitter-color"></i>관심사 : 게임</a></li>
+                                        <li th:if="${user.interest == '낚시'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-instagram mr-1 instagram-color"></i>관심사 : 낚시</a></li>
+                                        <li th:if="${user.interest == '웹서핑'}" class="mb-1"><a href="#"><i class="fas fa-fw fa-rss-square mr-1 rss-color"></i>관심사 : 웹서핑</a></li>
+                                        <li th:if="${user.interest == '음악'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-pinterest-square mr-1 pinterest-color"></i>관심사 : 음악</a></li>                                        
+                                        <li th:if="${user.interest == '독서'}"class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>관심사 : 독서</a></li>
+                                        <li th:if="${user.interest == 'TV'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>관심사 : TV</a></li>
+                                        <li th:if="${user.interest == '여성패션'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>관심사 : 여성패션</a></li>
+                                        <li th:if="${user.interest == '남성패션'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>관심사 : 남성패션</a></li>
+                                        <li th:if="${user.interest == '뷰티'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>관심사 : 뷰티</a></li>
+                                        <li th:if="${user.interest == '푸드'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>관심사 : 푸드</a></li>
+                                        <li th:if="${user.interest == '쇼핑'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>관심사 : 쇼핑</a></li>
+                                        <li th:if="${user.interest == '자동차'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>관심사 : 자동차</a></li>
+                                        <li th:if="${user.interest == '디자인'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>관심사 : 디자인</a></li>
+                                        <li th:if="${user.interest == '뉴스'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>관심사 : 뉴스</a></li>
+                                        <li th:if="${user.interest == '문화'}" class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>관심사 : 문화</a></li>
+                                    </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body border-top">
+                                    <h3 class="font-16">주소</h3>
+                                    <div>
+                                        <a href="#" class="badge badge-light mr-1 mb-1" th:text="기본주소 + ' : ' +${user.address1}"></a><br>
+                                        <a href="#" class="badge badge-light mr-1 mb-1" th:text="상세주소 + ' : ' +${user.address2}"></a><br>
+                                        <a href="#" class="badge badge-light mr-1 mb-1" th:text="우편번호 + ' : ' +${user.zip}"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end card profile -->
+                            <!-- ============================================================== -->
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end profile -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- campaign data -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12 col-12">
+                            <!-- ============================================================== -->
+                            <!-- campaign tab one -->
+                            <!-- ============================================================== -->
+                            <div class="influence-profile-content pills-regular">
+                                <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="pills-campaign-tab" data-toggle="pill" href="#pills-campaign" role="tab" aria-controls="pills-campaign" aria-selected="true">구매내역(작업중)</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-packages-tab" data-toggle="pill" href="#pills-packages" role="tab" aria-controls="pills-packages" aria-selected="false">문의내역(작업중)</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-selected="false">후기내역(작업중)</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-msg-tab" data-toggle="pill" href="#pills-msg" role="tab" aria-controls="pills-msg" aria-selected="false">포인트내역(작업중)</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-campaign" role="tabpanel" aria-labelledby="pills-campaign-tab">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="section-block">
+                                                    <h3 class="section-title">구매 내역</h3>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">9</h1>
+                                                        <p>총 구매금액(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">35</h1>
+                                                        <p>총 구매횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">8</h1>
+                                                        <p>총 할인받은 금액(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">1</h1>
+                                                        <p>환불받은 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">9</h1>
+                                                        <p>취소한 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">35</h1>
+                                                        <p>배송중인 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">8</h1>
+                                                        <p>교환한 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">1</h1>
+                                                        <p>반품한 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-block">
+                                            <h3 class="section-title">구매 목록</h3>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div class="media influencer-profile-data d-flex align-items-center p-2">
+                                                            <div class="mr-4">
+                                                                <img src="assets/images/slack.png" alt="User Avatar" class="user-avatar-lg">
+                                                            </div>
+                                                            <div class="media-body ">
+                                                                <div class="influencer-profile-data">
+                                                                    <h3 class="m-b-10">캠페인 제목은 여기(작업중)</h3>
+                                                                    <p>
+                                                                        <span class="m-r-20 d-inline-block">처음 시작한 날짜(작업중)
+                                                                            <span class="m-l-10 text-primary">2018년 3월 24일(작업중)</span>
+                                                                        </span>
+                                                                        <span class="m-r-20 d-inline-block">게시한 날짜(작업중)
+                                                                            <span class="m-l-10 text-secondary">2018년 3월 30일(작업중)</span>
+                                                                        </span>
+                                                                            <span class="m-r-20 d-inline-block">만료되는 날짜(작업중)<span class="m-l-10  text-info">2018년 3월 30일(작업중)</span>
+                                                                        </span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="border-top card-footer p-0">
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0 ">35</h4>
+                                                    <p>총 도달 범위(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0 ">45</h4>
+                                                    <p>총 조회수(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0">8</h4>
+                                                    <p>총 클릭 수(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0 ">10</h4>
+                                                    <p>약혼(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0">3</h4>
+                                                    <p>변환(작업중)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-packages-tab">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="section-block">
+                                                    <h3 class="section-title">문의 내역</h3>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">9</h1>
+                                                        <p>문의한 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">35</h1>
+                                                        <p>문의답변받은 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">8</h1>
+                                                        <p>배송문의한 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">1</h1>
+                                                        <p>교환문의한 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">9</h1>
+                                                        <p>반품문의한 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">35</h1>
+                                                        <p>취소문의한 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">8</h1>
+                                                        <p>결제문의한 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">1</h1>
+                                                        <p>기타문의한 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-block">
+                                            <h3 class="section-title">문의 목록</h3>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div class="media influencer-profile-data d-flex align-items-center p-2">
+                                                            <div class="mr-4">
+                                                                <img src="assets/images/slack.png" alt="User Avatar" class="user-avatar-lg">
+                                                            </div>
+                                                            <div class="media-body ">
+                                                                <div class="influencer-profile-data">
+                                                                    <h3 class="m-b-10">캠페인 제목은 여기(작업중)</h3>
+                                                                    <p>
+                                                                        <span class="m-r-20 d-inline-block">처음 시작한 날짜(작업중)
+                                                                            <span class="m-l-10 text-primary">2018년 3월 24일(작업중)</span>
+                                                                        </span>
+                                                                        <span class="m-r-20 d-inline-block">게시한 날짜(작업중)
+                                                                            <span class="m-l-10 text-secondary">2018년 3월 30일(작업중)</span>
+                                                                        </span>
+                                                                            <span class="m-r-20 d-inline-block">만료되는 날짜(작업중)<span class="m-l-10  text-info">2018년 3월 30일(작업중)</span>
+                                                                        </span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="border-top card-footer p-0">
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0 ">35</h4>
+                                                    <p>총 도달 범위(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0 ">45</h4>
+                                                    <p>총 조회수(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0">8</h4>
+                                                    <p>총 클릭 수(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0 ">10</h4>
+                                                    <p>약혼(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0">3</h4>
+                                                    <p>변환(작업중)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="section-block">
+                                                    <h3 class="section-title">후기 내역</h3>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">9</h1>
+                                                        <p>내가 준 별점수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">35</h1>
+                                                        <p>총 후기횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">8</h1>
+                                                        <p>후기쓰지않은 상품수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">1</h1>
+                                                        <p>답변받은 후기수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-block">
+                                            <h3 class="section-title">후기 목록</h3>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div class="media influencer-profile-data d-flex align-items-center p-2">
+                                                            <div class="mr-4">
+                                                                <img src="assets/images/slack.png" alt="User Avatar" class="user-avatar-lg">
+                                                            </div>
+                                                            <div class="media-body ">
+                                                                <div class="influencer-profile-data">
+                                                                    <h3 class="m-b-10">캠페인 제목은 여기(작업중)</h3>
+                                                                    <p>
+                                                                        <span class="m-r-20 d-inline-block">처음 시작한 날짜(작업중)
+                                                                            <span class="m-l-10 text-primary">2018년 3월 24일(작업중)</span>
+                                                                        </span>
+                                                                        <span class="m-r-20 d-inline-block">게시한 날짜(작업중)
+                                                                            <span class="m-l-10 text-secondary">2018년 3월 30일(작업중)</span>
+                                                                        </span>
+                                                                            <span class="m-r-20 d-inline-block">만료되는 날짜(작업중)<span class="m-l-10  text-info">2018년 3월 30일(작업중)</span>
+                                                                        </span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="border-top card-footer p-0">
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0 ">35</h4>
+                                                    <p>총 도달 범위(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0 ">45</h4>
+                                                    <p>총 조회수(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0">8</h4>
+                                                    <p>총 클릭 수(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0 ">10</h4>
+                                                    <p>약혼(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0">3</h4>
+                                                    <p>변환(작업중)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-msg" role="tabpanel" aria-labelledby="pills-msg-tab">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="section-block">
+                                                    <h3 class="section-title">포인트 내역</h3>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">9</h1>
+                                                        <p>포인트 받은 횟수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">35</h1>
+                                                        <p>총 포인트 받은수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">8</h1>
+                                                        <p>만료된 포인트수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="mb-1">1</h1>
+                                                        <p>만료되지 않은 포인트수(작업중)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-block">
+                                            <h3 class="section-title">포인트 목록</h3>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div class="media influencer-profile-data d-flex align-items-center p-2">
+                                                            <div class="mr-4">
+                                                                <img src="assets/images/slack.png" alt="User Avatar" class="user-avatar-lg">
+                                                            </div>
+                                                            <div class="media-body ">
+                                                                <div class="influencer-profile-data">
+                                                                    <h3 class="m-b-10">캠페인 제목은 여기(작업중)</h3>
+                                                                    <p>
+                                                                        <span class="m-r-20 d-inline-block">처음 시작한 날짜(작업중)
+                                                                            <span class="m-l-10 text-primary">2018년 3월 24일(작업중)</span>
+                                                                        </span>
+                                                                        <span class="m-r-20 d-inline-block">게시한 날짜(작업중)
+                                                                            <span class="m-l-10 text-secondary">2018년 3월 30일(작업중)</span>
+                                                                        </span>
+                                                                            <span class="m-r-20 d-inline-block">만료되는 날짜(작업중)<span class="m-l-10  text-info">2018년 3월 30일(작업중)</span>
+                                                                        </span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="border-top card-footer p-0">
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0 ">35</h4>
+                                                    <p>총 도달 범위(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0 ">45</h4>
+                                                    <p>총 조회수(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0">8</h4>
+                                                    <p>총 클릭 수(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0 ">10</h4>
+                                                    <p>약혼(작업중)</p>
+                                                </div>
+                                                <div class="campaign-metrics d-xl-inline-block">
+                                                    <h4 class="mb-0">3</h4>
+                                                    <p>변환(작업중)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end campaign tab one -->
+                            <!-- ============================================================== -->
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end campaign data -->
+                        <!-- ============================================================== -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end wrapper -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <!-- jquery 3.3.1  -->
+    <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- main js -->
+    <script src="assets/libs/js/main-js.js"></script>
+   
+</body>
+ 
+</html>

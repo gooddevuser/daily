@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daily.mapper.ReviewMapper">
+
+<insert id="insertReview" parameterType="com.daily.vo.Review">
+	insert into daily_review(
+			uno,title,rstar,review,reviewpwd,rwriter,
+			reviewrepwd,pno,ractive
+			) 
+	values(
+			#{uno},#{title},#{rstar},#{review},#{reviewpwd},#{rwriter},
+			#{reviewrepwd},#{pno},#{ractive}
+			)
+	</insert>
+	
+	<select id="selectReview" resultType="com.daily.vo.Review">
+		SELECT *
+		FROM daily_review	
+	</select>
+	
+	<select id="selectReviewByPno" parameterType="int" resultType="com.daily.vo.Review">
+		SELECT *
+		FROM daily_review	
+		WHERE pno = #{pno}
+	</select>
+	
+	<select id="selectReviewByRno" resultType="com.daily.vo.Review">
+		SELECT *
+		FROM daily_review			
+		where rno = #{rno}
+	</select>
+	
+	<update id="updateReviewByRno" parameterType="com.daily.vo.Review">
+		update daily_review
+		set ranswer = #{ranswer},ractive = #{ractive}
+		where rno = #{rno}
+	</update>
+	
+	<select id="selectFinishReview" resultType="com.daily.vo.Review">
+		SELECT *
+		FROM daily_review			
+		where ractive = '1'
+	</select>
+	
+	<select id="selectReviewByuno" parameterType="int" resultType="com.daily.vo.Review">
+		SELECT *
+		FROM daily_review			
+		where uno = #{uno} and ractive = '0' or ractive = '1'
+	</select>
+	
+</mapper>
+
+
+
+
+

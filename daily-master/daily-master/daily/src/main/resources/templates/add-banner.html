@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+ 
+<head>
+    <head th:include="head :: head"> </head>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+         <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <header th:include="header :: header"> </header>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <sidebar th:include="sidebar :: sidebar"> </sidebar>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">            
+                    <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- valifation types -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">배너등록</h5>
+                                <div class="card-body">
+                                    <form id="add-banner" data-parsley-validate="" novalidate="" method="post">
+                                    <input type="hidden" name="uno" th:if="${session.loginuser != null}" th:value="${ session.loginuser.uno }"> 
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">배너번호</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <select class="custom-select d-block w-100" required="" name="bno" id="bno">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                    <option value="13">13</option>
+                                                    <option value="14">14</option>
+                                                    <option value="15">15</option>
+                                                    <option value="16">16</option>
+                                                    <option value="17">17</option>
+                                                    <option value="18">18</option>
+                                                    <option value="19">19</option>
+                                                    <option value="20">20</option>
+                                                    <option value="21">21</option>
+                                                    <option value="22">22</option>
+                                                    <option value="23">23</option>
+                                                    <option value="24">24</option>
+                                                    <option value="25">25</option>
+                                                    <option value="26">26</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" id="title">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">배너타이틀명</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input type="text" name="title" required="" data-parsley-minlength="3" placeholder="3글자 이상의 배너타이틀명" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" id="subtitle">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">배너소제목명</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input type="text" name="subtitle" required="" data-parsley-minlength="3" placeholder="3글자 이상의 배너소제목명" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" id="contenttitle">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">콘텐츠타이틀명</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input type="text" name="contenttitle" required="" data-parsley-minlength="3" placeholder="3글자 이상의 콘텐츠타이틀명" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" id="content">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">콘텐츠내용</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input type="text" name="content" required="" data-parsley-minlength="3" placeholder="3글자 이상의 콘텐츠내용" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" id="savedfilename">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">배너이미지</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input type="file" name="savedfilename" required="" data-parsley-minlength="3" placeholder="3글자 이상의 배너타이틀명" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">시작일자/마감일자</label>
+                                            <div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
+                                                <input id="validdate1" name="validdate1" type="text" placeholder="시작일자 20200420처럼 입력" class="form-control">
+                                            </div>
+                                            <div class="col-sm-4 col-lg-3">
+                                                <input id="validdate2" name="validdate2" type="text" placeholder="마감일자 20200420처럼 입력" class="form-control">
+                                            </div>
+                                        </div>                                                                                     
+                                        <div class="form-group row text-right">
+                                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                                <button type="submit" class="btn btn-space btn-primary">배너등록</button>
+                                                <button class="btn btn-space btn-secondary">뒤로</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end valifation types -->
+                        <!-- ============================================================== -->
+                    </div>           
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="../assets/vendor/parsley/parsley.js"></script>
+    <script src="../assets/libs/js/main-js.js"></script>
+    <script src="../assets/vendor/datepicker/datepicker.js"></script>
+    <script src="../assets/vendor/datepicker/moment.js"></script>
+    <script src="../assets/vendor/datepicker/tempusdominus-bootstrap-4.js"></script>
+    <script>
+    $('#form').parsley();
+    </script>
+    <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+    </script>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    $('#contenttitle').hide();
+	$('#content').hide();
+	
+	$('#bno').change(function() {
+		var state = jQuery('#bno option:selected').val();
+		if ( state == '1' ) {
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '2' ) {
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '3' ) {
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '4' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').show();
+			$('#content').show();
+			
+		} else if ( state == '5' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').show();
+			$('#content').show();
+			
+		} else if ( state == '6' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').show();
+			$('#content').show();
+			
+		} else if ( state == '7' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '8' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '9' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '10' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '11' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '12' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '13' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').show();
+			$('#content').show();
+			
+		} else if ( state == '14' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').show();
+			$('#content').show();
+			
+		} else if ( state == '15' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').show();
+			$('#content').show();
+			
+		} else if ( state == '16' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').show();
+			$('#content').show();
+			
+		} else if ( state == '17' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').show();
+			$('#content').show();
+			
+		} else if ( state == '18' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').show();
+			$('#content').show();
+			
+		} else if ( state == '19' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '20' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '21' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '22' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '23' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '24' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').hide();
+			$('#content').hide();
+			
+		} else if ( state == '25' ) {			
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').show();
+			$('#content').show();
+			
+		} else {
+			$('#title').show();
+			$('#subtitle').show();
+			$('#contenttitle').show();
+			$('#content').show();		
+			
+		}; 
+	});
+	</script>
+</html>

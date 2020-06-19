@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+ 
+<head>
+    <head th:include="head :: head"> </head>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+         <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <header th:include="header :: header"> </header>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <sidebar th:include="sidebar :: sidebar"> </sidebar>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">            
+                    <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- valifation types -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">문의글 수정</h5>
+                                <div class="card-body">
+                                    <form id="validationform" data-parsley-validate="" novalidate="">
+                                    	<div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">문의번호/문의일자</label>
+                                            <div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
+                                                <input id="text" readonly="readonly" required="" placeholder="글번호" class="form-control">
+                                            </div>
+                                            <div class="col-sm-4 col-lg-3">
+                                                <input readonly="readonly" required="" data-parsley-equalto="#pass2" placeholder="작성일" class="form-control">
+                                            </div>
+                                        </div>  
+                                    	<div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">작성자</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input readonly="readonly" required="" data-parsley-minlength="3" placeholder="작성자이름" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">문의유형</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <select class="custom-select d-block w-100" id="country" required="">
+                                                    <option value="">문의유형1#</option>
+                                                    <option value="">문의유형2#</option>
+                                                    <option value="">문의유형3#</option>
+                                                </select>
+                                            </div>
+                                        </div>     
+                                    	<div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">제목</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input type="text" required="" data-parsley-minlength="3" placeholder="문의하실 글의 제목을 입력하세요." class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">상품명</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <select class="custom-select d-block w-100" id="country" required="">
+                                                    <option value="">여성</option>
+                                                    <option value="">남성</option>
+                                                    <option value="">악세사리</option>
+                                                </select>
+                                            </div>
+                                        </div>     
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">글 내용</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <textarea required="" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">글 비밀번호</label>
+                                            <div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
+                                                <input id="pass2" type="password" required="" placeholder="비밀번호 입력" class="form-control">
+                                            </div>
+                                            <div class="col-sm-4 col-lg-3">
+                                                <input type="password" required="" data-parsley-equalto="#pass2" placeholder="비밀번호 재확인" class="form-control">
+                                            </div>
+                                        </div>                                                                             
+                                        <div class="form-group row text-right">
+                                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                                <button type="submit" class="btn btn-space btn-primary">문의글 수정하기</button>
+                                                <button class="btn btn-space btn-secondary">뒤로가기</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end valifation types -->
+                        <!-- ============================================================== -->
+                    </div>           
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="../assets/vendor/parsley/parsley.js"></script>
+    <script src="../assets/libs/js/main-js.js"></script>
+    <script>
+    $('#form').parsley();
+    </script>
+    <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+    </script>
+</body>
+ 
+</html>

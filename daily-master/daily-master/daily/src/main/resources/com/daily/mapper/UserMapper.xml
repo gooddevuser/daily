@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daily.mapper.UserMapper">
+
+	<insert id="insertUser" parameterType="com.daily.vo.User">
+	insert into daily_user(
+			uname,id,nickname,gender,age,
+			pwd,repwd,address1,zip,address2,email,
+			url,tel,interest,uactive
+			)
+	values(
+			#{uname},#{id},#{nickname},#{gender},#{age},
+			#{pwd},#{repwd},#{address1},#{zip},#{address2},#{email},
+			#{url},#{tel},#{interest},#{uactive}
+			)
+	</insert>
+	
+	<select id="selectUserByUno" parameterType="int" resultType="com.daily.vo.User">
+	select *
+	from daily_user
+	where uno = #{uno}
+	</select>
+	
+	<update id="updateUserByUno" parameterType="com.daily.vo.User">
+	update daily_user
+	set nickname = #{nickname},gender = #{gender},age = #{age},
+		pwd = #{pwd},repwd = #{repwd},address1 = #{address1},zip = #{zip},address2 = #{address2},email = #{email},
+		url = #{url},tel = #{tel},interest = #{interest}
+	where uno = #{uno}
+	</update>
+	
+	<select id="selectUser" resultType="com.daily.vo.User">
+	select *
+	from daily_user
+	</select>
+	
+	<select id="selectUserByuseridAndpwd" parameterType="com.daily.vo.User" resultType="com.daily.vo.User">
+		select *
+		from daily_user
+		where id = #{id} and pwd = #{pwd}
+	</select>
+	
+	<select id="selectProductByOnoByPnoByUno1" parameterType="com.daily.vo.User" resultType="com.daily.vo.User">
+		SELECT *
+		FROM daily_order o
+		INNER JOIN daily_user u
+		ON o.uno = u.uno
+		INNER JOIN daily_product p
+		ON o.pno = p.pno				
+		where u.uno = #{uno} and o.oactive = '1'
+	</select>
+		
+	<update id="updatePointByUno" parameterType="com.daily.vo.User">
+		update daily_user
+		set upoint = upoint + #{point}
+		where uno = #{uno}
+	</update>
+	
+	<update id="updatePointAllUser" parameterType="com.daily.vo.User">
+		update daily_user
+		set upoint = upoint + #{point}
+		where uno = #{uno}
+	</update>
+	
+	<update id="updateUser1" parameterType="com.daily.vo.User">
+		update daily_user
+		set uactive = '0'
+		where uno = #{uno}
+	</update>
+	
+	<update id="updateUser2" parameterType="com.daily.vo.User">
+		update daily_user
+		set uactive = '1'
+		where uno = #{uno}
+	</update>
+	
+	<update id="updateUser3" parameterType="com.daily.vo.User">
+		update daily_user
+		set uactive = '10'
+		where uno = #{uno}
+	</update>
+	
+	<delete id="updateUser4" parameterType="com.daily.vo.User">
+		delete 
+		from daily_user
+		where uno = #{uno}
+	</delete>
+
+</mapper>

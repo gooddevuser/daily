@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+ 
+<head>
+    <head th:include="head :: head"> </head>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+         <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <header th:include="header :: header"> </header>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <sidebar th:include="sidebar :: sidebar"> </sidebar>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">            
+                    <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- valifation types -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">회원 포인트 수정</h5>
+                                <div class="card-body">
+                                    <form id="validationform" data-parsley-validate="" novalidate="">
+                                    	<div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">포인트추가번호/지급일</label>
+                                            <div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
+                                                <input id="text" readonly="readonly" required="" placeholder="글번호" class="form-control">
+                                            </div>
+                                            <div class="col-sm-4 col-lg-3">
+                                                <input readonly="readonly" required="" data-parsley-equalto="#pass2" placeholder="작성일" class="form-control">
+                                            </div>
+                                        </div>  
+                                    	<div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">지급자</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input readonly="readonly" required="" data-parsley-minlength="3" placeholder="작성자이름" class="form-control">
+                                            </div>
+                                        </div>   
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">포인트 지급 사유</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <select class="custom-select d-block w-100" id="country" required="">
+                                                	<option value="1">사유1</option>
+                                                    <option value="2">사유2</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">대상</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <select class="custom-select d-block w-100" id="country" required="">
+                                                	<option value="1">전체</option>
+                                                    <option value="2">개별</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">유효기간</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <div class="custom-control custom-radio">
+                                                    <input id="credit1" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+                                                    <label class="custom-control-label" for="credit1">제한</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input id="debit1" name="paymentMethod" type="radio" class="custom-control-input" required="">
+                                                    <label class="custom-control-label" for="debit1">무제한</label>
+                                                </div>                                                    
+                                            </div>
+                                        </div>                                          
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">지급할 포인트</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input type="text" required="" data-parsley-length="[1000,1000000]" placeholder="1,000포인트부터 1,000,000포인트 까지 입력" class="form-control">
+                                            </div>
+                                        </div> 
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">유효날짜</label>
+                                            <div class="col-12 col-sm-8 col-lg-6 input-group date" id="datetimepicker1" data-target-input="nearest">
+	                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1">
+	                                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+	                                                <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+	                                            </div>
+	                                        </div>
+                                        </div> 
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">메일 알림 제목</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input type="text" required="" data-parsley-minlength="3" placeholder="3글자 이상의 제목 입력" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">메일 알림 내용</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <textarea required="" class="form-control"></textarea>
+                                            </div>
+                                        </div>                                                                                                                                      
+                                        <div class="form-group row text-right">
+                                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                                <button type="submit" class="btn btn-space btn-primary">포인트 지급수정</button>
+                                                <button class="btn btn-space btn-secondary">뒤로</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end valifation types -->
+                        <!-- ============================================================== -->
+                    </div>           
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="../assets/vendor/parsley/parsley.js"></script>
+    <script src="../assets/libs/js/main-js.js"></script>
+    <script src="../assets/vendor/datepicker/datepicker.js"></script>
+    <script src="../assets/vendor/datepicker/moment.js"></script>
+    <script src="../assets/vendor/datepicker/tempusdominus-bootstrap-4.js"></script>
+    <script>
+    $('#form').parsley();
+    </script>
+    <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+    </script>
+</body>
+ 
+</html>

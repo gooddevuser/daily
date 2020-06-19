@@ -1,0 +1,1182 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <head th:include="head :: head"> </head>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <header th:include="header :: header"> </header>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <sidebar th:include="sidebar :: sidebar"> </sidebar>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">
+                     <div class="ecommerce-widget">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">총 수익 │ 날짜 (오늘 날짜 기준 -9일)</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1" th:text="${SumSaleprice}+원"></h1>
+                                        </div>
+                                    </div>
+                                    <div id="sparkline-revenue"></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">평균 수익 │ 날짜 (오늘 날짜 기준 -9일)</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1" th:text="${AvgSaleprice}+원"></h1>
+                                        </div>
+                                    </div>
+                                    <div id="sparkline-revenue2"></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">총 환불 │ 날짜 (오늘 날짜 기준 -9일)</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1" th:text="${SumRefundSaleprice}+원"></h1>
+                                        </div>
+                                    </div>
+                                    <div id="sparkline-revenue3"></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">평균 할인금액 │ 날짜 (오늘 날짜 기준 -9일)</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1" th:text="${AvgSaleSaleprice}+원"></h1>
+                                        </div>
+                                    </div>
+                                    <div id="sparkline-revenue4"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- ============================================================== -->
+                      
+                            <!-- ============================================================== -->
+
+                                          <!-- recent orders  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">최근 주문들</h5>
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="bg-light">
+                                                    <tr class="border-0">
+                                                        <th class="border-0">#</th>
+                                                        <th class="border-0">상품이미지</th>
+                                                        <th class="border-0">상품명</th>
+                                                        <th class="border-0">상품번호</th>
+                                                        <th class="border-0">수량</th>
+                                                        <th class="border-0">금액</th>
+                                                        <th class="border-0">주문날짜</th>
+                                                        <th class="border-0">고객</th>
+                                                        <th class="border-0">상태</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr th:if="${ #lists.size(orders) } > 0" th:each="order : ${ orders }">
+                                                        <td th:text="${order.ono}"></td>
+                                                        <td>
+                                                            <div class="m-r-10"><img src="assets/images/product-pic.jpg" alt="user" class="rounded" width="45"></div>
+                                                        </td>
+                                                        <td th:text="${order.pname}"></td>
+                                                        <td th:text="${order.pcode}"></td>
+                                                        <td th:text="${order.quantity}+개"></td>
+                                                        <td th:text="${order.saleprice}*${order.quantity}+원"></td>
+                                                        <td th:text="${order.odate}"></td>
+                                                        <td th:text="${order.uname}+님"></td>
+                                                        <td th:if="${order.oactive == 1}"><span class="badge-dot badge-brand mr-1"></span>결제완료</td> 
+                                                    	<td th:if="${order.oactive == 2}"><span class="badge-dot badge-brand mr-1"></span>상품출고</td>
+                                                    	<td th:if="${order.oactive == 3}"><span class="badge-dot badge-brand mr-1"></span>배송중</td>
+                                                    	<td th:if="${order.oactive == 4}"><span class="badge-dot badge-success mr-1"></span>배송완료</td>
+                                                    	<td th:if="${order.oactive == 5}"><span class="badge-dot badge-success mr-1"></span>후기완료</td>
+                                                    	<td th:if="${order.oactive == 6}"><span class="badge-dot badge-brand mr-1"></span>취소요청</td>
+                                                    	<td th:if="${order.oactive == 7}"><span class="badge-dot badge-success mr-1"></span>취소완료</td>
+                                                    	<td th:if="${order.oactive == 8}"><span class="badge-dot badge-brand mr-1"></span>교환요청</td>
+                                                    	<td th:if="${order.oactive == 9}"><span class="badge-dot badge-success mr-1"></span>교환완료</td>
+                                                    	<td th:if="${order.oactive == 10}"><span class="badge-dot badge-brand mr-1"></span>반품요청</td>
+                                                    	<td th:if="${order.oactive == 11}"><span class="badge-dot badge-success mr-1"></span>반품완료</td>
+                                                    	<td th:if="${order.oactive == 12}"><span class="badge-dot badge-brand mr-1"></span>환불요청</td>
+                                                    	<td th:if="${order.oactive == 13}"><span class="badge-dot badge-success mr-1"></span>환불완료</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="9"><a href="all-order" class="btn btn-outline-light float-right">자세히 보기</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- ============================================================== -->
+              				                        <!-- product category  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">상품 카테고리(작업중)</h5>
+                                    <div class="card-body">
+                                        <div class="ct-chart-category ct-golden-section" style="height: 315px;"></div>
+                                        <div class="text-center m-t-40">
+                                            <span class="legend-item mr-3">
+                                            <span class="fa-xs mr-1 legend-tile" style="color:#5969ff;"><i class="fa fa-fw fa-square-full "></i></span>
+                                            <span class="legend-text">제습│청소</span>
+                                            </span>
+                                            <span class="legend-item mr-3">
+                                            <span class="fa-xs mr-1 legend-tile" style="color:#f0346e;"><i class="fa fa-fw fa-square-full"></i></span>
+                                            <span class="legend-text">주방│세탁</span>
+                                            </span>
+                                            <span class="legend-item mr-3">
+                                            <span class="fa-xs mr-1 legend-tile" style="color:#17c0dc;"><i class="fa fa-fw fa-square-full"></i></span>
+                                            <span class="legend-text">구강│청결</span>
+                                            </span>
+                                            <span class="legend-item mr-3">
+                                            <span class="fa-xs mr-1 legend-tile" style="color:#ffe174;"><i class="fa fa-fw fa-square-full"></i></span>
+                                            <span class="legend-text">뷰티│케어</span>
+                                            </span>
+                                            <span class="legend-item mr-3">
+                                            <span class="fa-xs mr-1 legend-tile" style="color:#ffa47f;"><i class="fa fa-fw fa-square-full"></i></span>
+                                            <span class="legend-text">수납│욕실</span>
+                                            </span>
+                                            <span class="legend-item mr-3">
+                                            <span class="fa-xs mr-1 legend-tile" style="color:#b4f87b;"><i class="fa fa-fw fa-square-full"></i></span>
+                                            <span class="legend-text">식품</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end product category  -->
+                                   <!-- product sales  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                        <h5 class="card-header">상품 판매(작업중)</h5>
+                                    <div class="card-body">
+                                        <div class="ct-chart-product ct-golden-section"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end product sales  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-3 col-lg-12 col-md-6 col-sm-12 col-12">
+                                <!-- ============================================================== -->
+                                <!-- top perfomimg  -->
+                                <!-- ============================================================== -->
+                                <div class="card">
+                                    <h5 class="card-header">캠페인(작업중)</h5>
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table no-wrap p-table">
+                                                <thead class="bg-light">
+                                                    <tr class="border-0">
+                                                        <th class="border-0">캠페인</th>
+                                                        <th class="border-0">참여수</th>
+                                                        <th class="border-0">수익</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>캠페인#1</td>
+                                                        <td>98,789 </td>
+                                                        <td>4563</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>캠페인#2</td>
+                                                        <td>2,789 </td>
+                                                        <td>325</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>캠페인#3</td>
+                                                        <td>1,459 </td>
+                                                        <td>225</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Campaign#4</td>
+                                                        <td>5,035 </td>
+                                                        <td>$856</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Campaign#5</td>
+                                                        <td>10,000 </td>
+                                                        <td>$1000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Campaign#5</td>
+                                                        <td>10,000 </td>
+                                                        <td>$1000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3">
+                                                            <a href="#" class="btn btn-outline-light float-right">자세히 보기</a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ============================================================== -->
+                                <!-- end top perfomimg  -->
+                                <!-- ============================================================== -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- ============================================================== -->
+                            <!-- sales  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                <div class="card border-3 border-top border-top-primary">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">매상 (작업중)</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1">12099</h1>
+                                        </div>
+                                        <div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                                            <span class="icon-circle-small icon-box-xs text-success bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1">5.86%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end sales  -->
+                            <!-- ============================================================== -->
+                            <!-- ============================================================== -->
+                            <!-- new customer  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                <div class="card border-3 border-top border-top-primary">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">신규 고객 (작업중)</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1">1245</h1>
+                                        </div>
+                                        <div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                                            <span class="icon-circle-small icon-box-xs text-success bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1">10%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end new customer  -->
+                            <!-- ============================================================== -->
+                            <!-- ============================================================== -->
+                            <!-- visitor  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                <div class="card border-3 border-top border-top-primary">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">방문객 (작업중)</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1">13000</h1>
+                                        </div>
+                                        <div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                                            <span class="icon-circle-small icon-box-xs text-success bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1">5%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end visitor  -->
+                            <!-- ============================================================== -->
+                            <!-- ============================================================== -->
+                            <!-- total orders  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                <div class="card border-3 border-top border-top-primary">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">총 주문 (작업중)</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1">1340</h1>
+                                        </div>
+                                        <div class="metric-label d-inline-block float-right text-danger font-weight-bold">
+                                            <span class="icon-circle-small icon-box-xs text-danger bg-danger-light bg-danger-light "><i class="fa fa-fw fa-arrow-down"></i></span><span class="ml-1">4%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end total orders  -->
+                            <!-- ============================================================== -->
+                        </div>
+                        <div class="row">
+                            <!-- ============================================================== -->
+                            <!-- total revenue  -->
+                            <!-- ============================================================== -->
+  
+                            
+                            <!-- ============================================================== -->
+                            <!-- ============================================================== -->
+                            <!-- category revenue  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">카테고리 별 수익 (작업중)</h5>
+                                    <div class="card-body">
+                                        <div id="c3chart_category" style="height: 420px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end category revenue  -->
+                            <!-- ============================================================== -->
+
+                            <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">총 수익 (작업중)</h5>
+                                    <div class="card-body">
+                                        <div id="morris_totalrevenue"></div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <p class="display-7 font-weight-bold"><span class="text-primary d-inline-block">$26,000</span><span class="text-success float-right">+9.45%</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <!-- ============================================================== -->
+                                <!-- social source  -->
+                                <!-- ============================================================== -->
+                                <div class="card">
+                                    <h5 class="card-header">소셜 소스 별 판매 (작업중)</h5>
+                                    <div class="card-body p-0">
+                                        <ul class="social-sales list-group list-group-flush">
+                                            <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle facebook-bgcolor mr-2"><i class="fab fa-facebook-f"></i></span><span class="social-sales-name">Facebook</span><span class="social-sales-count text-dark">120 Sales</span>
+                                            </li>
+                                            <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle twitter-bgcolor mr-2"><i class="fab fa-twitter"></i></span><span class="social-sales-name">Twitter</span><span class="social-sales-count text-dark">99 Sales</span>
+                                            </li>
+                                            <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle instagram-bgcolor mr-2"><i class="fab fa-instagram"></i></span><span class="social-sales-name">Instagram</span><span class="social-sales-count text-dark">76 Sales</span>
+                                            </li>
+                                            <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle pinterest-bgcolor mr-2"><i class="fab fa-pinterest-p"></i></span><span class="social-sales-name">Pinterest</span><span class="social-sales-count text-dark">56 Sales</span>
+                                            </li>
+                                            <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle googleplus-bgcolor mr-2"><i class="fab fa-google-plus-g"></i></span><span class="social-sales-name">Google Plus</span><span class="social-sales-count text-dark">36 Sales</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <a href="#" class="btn-primary-link">View Details</a>
+                                    </div>
+                                </div>
+                                <!-- ============================================================== -->
+                                <!-- end social source  -->
+                                <!-- ============================================================== -->
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <!-- ============================================================== -->
+                                <!-- sales traffice source  -->
+                                <!-- ============================================================== -->
+                                <div class="card">
+                                    <h5 class="card-header"> 트래픽 소스 별 판매 (작업중)</h5>
+                                    <div class="card-body p-0">
+                                        <ul class="traffic-sales list-group list-group-flush">
+                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Direct</span><span class="traffic-sales-amount">$4000.00  <span class="icon-circle-small icon-box-xs text-success ml-4 bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1 text-success">5.86%</span></span>
+                                            </li>
+                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Search<span class="traffic-sales-amount">$3123.00  <span class="icon-circle-small icon-box-xs text-success ml-4 bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1 text-success">5.86%</span></span>
+                                                </span>
+                                            </li>
+                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Social<span class="traffic-sales-amount ">$3099.00  <span class="icon-circle-small icon-box-xs text-success ml-4 bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1 text-success">5.86%</span></span>
+                                                </span>
+                                            </li>
+                                            <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Referrals<span class="traffic-sales-amount ">$2220.00   <span class="icon-circle-small icon-box-xs text-danger ml-4 bg-danger-light"><i class="fa fa-fw fa-arrow-down"></i></span><span class="ml-1 text-danger">4.02%</span></span>
+                                                </span>
+                                            </li>
+                                            <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Email<span class="traffic-sales-amount">$1567.00   <span class="icon-circle-small icon-box-xs text-danger ml-4 bg-danger-light"><i class="fa fa-fw fa-arrow-down"></i></span><span class="ml-1 text-danger">3.86%</span></span>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <a href="#" class="btn-primary-link">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end sales traffice source  -->
+                            <!-- ============================================================== -->
+                            <!-- ============================================================== -->
+                            <!-- sales traffic country source  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-3 col-lg-12 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">국가 별 트래픽 소스 별 판매 (작업중)</h5>
+                                    <div class="card-body p-0">
+                                        <ul class="country-sales list-group list-group-flush">
+                                            <li class="country-sales-content list-group-item"><span class="mr-2"><i class="flag-icon flag-icon-us" title="us" id="us"></i> </span>
+                                                <span class="">United States</span><span class="float-right text-dark">78%</span>
+                                            </li>
+                                            <li class="list-group-item country-sales-content"><span class="mr-2"><i class="flag-icon flag-icon-ca" title="ca" id="ca"></i></span><span class="">Canada</span><span class="float-right text-dark">7%</span>
+                                            </li>
+                                            <li class="list-group-item country-sales-content"><span class="mr-2"><i class="flag-icon flag-icon-ru" title="ru" id="ru"></i></span><span class="">Russia</span><span class="float-right text-dark">4%</span>
+                                            </li>
+                                            <li class="list-group-item country-sales-content"><span class=" mr-2"><i class="flag-icon flag-icon-in" title="in" id="in"></i></span><span class="">India</span><span class="float-right text-dark">12%</span>
+                                            </li>
+                                            <li class="list-group-item country-sales-content"><span class=" mr-2"><i class="flag-icon flag-icon-fr" title="fr" id="fr"></i></span><span class="">France</span><span class="float-right text-dark">16%</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <a href="#" class="btn-primary-link">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end sales traffice country source  -->
+                            <!-- ============================================================== -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                             Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">Support</a>
+                                <a href="javascript: void(0);">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- end wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <!-- jquery 3.3.1 -->
+    <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- main js -->
+    <script src="assets/libs/js/main-js.js"></script>
+    <!-- chart chartist js -->
+    <script src="assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
+    <!-- sparkline js -->
+    <script src="assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
+    <!-- morris js -->
+    <script src="assets/vendor/charts/morris-bundle/raphael.min.js"></script>
+    <script src="assets/vendor/charts/morris-bundle/morris.js"></script>
+    <!-- chart c3 js -->
+    <script src="assets/vendor/charts/c3charts/c3.min.js"></script>
+    <script src="assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+    <script src="assets/vendor/charts/c3charts/C3chartjs.js"></script>
+    <script src="assets/libs/js/dashboard-ecommerce.js"></script>    
+    <script src="assets/vendor/charts/chartist-bundle/Chartistjs.js"></script>
+    <script src="assets/vendor/charts/chartist-bundle/chartist-plugin-threshold.js"></script>
+    <script src="assets/vendor/charts/charts-bundle/Chart.bundle.js"></script>
+    <script src="assets/vendor/charts/charts-bundle/chartjs.js"></script>
+    <!-- dashboard finance js -->
+    <script src="assets/libs/js/dashboard-finance.js"></script>
+    <!-- gauge js -->
+    <script src="assets/vendor/gauge/gauge.min.js"></script>
+    <!-- morris js -->
+    <script src="assets/vendor/charts/morris-bundle/morrisjs.html"></script>
+    <!-- daterangepicker js -->    
+    
+    <script>
+    $(function() {
+    	var SumSaleprice1Day = '[[${SumSaleprice1Day}]]';
+    	var SumSaleprice2Day = '[[${SumSaleprice2Day}]]';
+    	var SumSaleprice3Day = '[[${SumSaleprice3Day}]]';
+    	var SumSaleprice4Day = '[[${SumSaleprice4Day}]]';
+    	var SumSaleprice5Day = '[[${SumSaleprice5Day}]]';
+    	var SumSaleprice6Day = '[[${SumSaleprice6Day}]]';
+    	var SumSaleprice7Day = '[[${SumSaleprice7Day}]]';
+    	var SumSaleprice8Day = '[[${SumSaleprice8Day}]]';
+    	var SumSaleprice9Day = '[[${SumSaleprice9Day}]]';
+        
+        $("#sparkline-revenue").sparkline([
+        								 SumSaleprice1Day, SumSaleprice2Day, SumSaleprice3Day,
+        								 SumSaleprice4Day, SumSaleprice5Day, SumSaleprice6Day,
+        								 SumSaleprice7Day, SumSaleprice8Day, SumSaleprice9Day
+										 ], {
+            type: 'line',
+            width: '99.5%',
+            height: '100',
+            lineColor: '#5969ff',
+            fillColor: '',
+            lineWidth: 2,
+            spotColor: undefined,
+            minSpotColor: undefined,
+            maxSpotColor: undefined,
+            highlightSpotColor: undefined,
+            highlightLineColor: undefined,
+            resize:true
+        });
+        
+        var AvgSaleprice1Day = '[[${AvgSaleprice1Day}]]';
+    	var AvgSaleprice2Day = '[[${AvgSaleprice2Day}]]';
+    	var AvgSaleprice3Day = '[[${AvgSaleprice3Day}]]';
+    	var AvgSaleprice4Day = '[[${AvgSaleprice4Day}]]';
+    	var AvgSaleprice5Day = '[[${AvgSaleprice5Day}]]';
+    	var AvgSaleprice6Day = '[[${AvgSaleprice6Day}]]';
+    	var AvgSaleprice7Day = '[[${AvgSaleprice7Day}]]';
+    	var AvgSaleprice8Day = '[[${AvgSaleprice8Day}]]';
+    	var AvgSaleprice9Day = '[[${AvgSaleprice9Day}]]';
+
+        $("#sparkline-revenue2").sparkline([
+							        	  AvgSaleprice1Day, AvgSaleprice2Day, AvgSaleprice3Day,
+							        	  AvgSaleprice4Day, AvgSaleprice5Day, AvgSaleprice6Day,
+							        	  AvgSaleprice7Day, AvgSaleprice8Day, AvgSaleprice9Day
+        								   ], {
+            type: 'line',
+            width: '99.5%',
+            height: '100',
+            lineColor: '#ff407b',
+            fillColor: '',
+            lineWidth: 2,
+            spotColor: undefined,
+            minSpotColor: undefined,
+            maxSpotColor: undefined,
+            highlightSpotColor: undefined,
+            highlightLineColor: undefined,
+            resize:true
+        });
+        
+        var SumRefundSaleprice1Day = '[[${SumRefundSaleprice1Day}]]';
+    	var SumRefundSaleprice2Day = '[[${SumRefundSaleprice2Day}]]';
+    	var SumRefundSaleprice3Day = '[[${SumRefundSaleprice3Day}]]';
+    	var SumRefundSaleprice4Day = '[[${SumRefundSaleprice4Day}]]';
+    	var SumRefundSaleprice5Day = '[[${SumRefundSaleprice5Day}]]';
+    	var SumRefundSaleprice6Day = '[[${SumRefundSaleprice6Day}]]';
+    	var SumRefundSaleprice7Day = '[[${SumRefundSaleprice7Day}]]';
+    	var SumRefundSaleprice8Day = '[[${SumRefundSaleprice8Day}]]';
+    	var SumRefundSaleprice9Day = '[[${SumRefundSaleprice9Day}]]';
+    	
+        $("#sparkline-revenue3").sparkline([
+								          SumRefundSaleprice1Day, SumRefundSaleprice2Day, SumRefundSaleprice3Day,
+								          SumRefundSaleprice4Day, SumRefundSaleprice5Day, SumRefundSaleprice6Day,
+								          SumRefundSaleprice7Day, SumRefundSaleprice8Day, SumRefundSaleprice9Day
+        								  ], {
+            type: 'line',
+            width: '99.5%',
+            height: '100',
+            lineColor: '#25d5f2',
+            fillColor: '',
+            lineWidth: 2,
+            spotColor: undefined,
+            minSpotColor: undefined,
+            maxSpotColor: undefined,
+            highlightSpotColor: undefined,
+            highlightLineColor: undefined,
+            resize:true
+        });
+                
+        var AvgSaleSaleprice1Day = '[[${AvgSaleSaleprice1Day}]]';
+    	var AvgSaleSaleprice2Day = '[[${AvgSaleSaleprice2Day}]]';
+    	var AvgSaleSaleprice3Day = '[[${AvgSaleSaleprice3Day}]]';
+    	var AvgSaleSaleprice4Day = '[[${AvgSaleSaleprice4Day}]]';
+    	var AvgSaleSaleprice5Day = '[[${AvgSaleSaleprice5Day}]]';
+    	var AvgSaleSaleprice6Day = '[[${AvgSaleSaleprice6Day}]]';
+    	var AvgSaleSaleprice7Day = '[[${AvgSaleSaleprice7Day}]]';
+    	var AvgSaleSaleprice8Day = '[[${AvgSaleSaleprice8Day}]]';
+    	var AvgSaleSaleprice9Day = '[[${AvgSaleSaleprice9Day}]]';
+    	    	
+        $("#sparkline-revenue4").sparkline([
+							        	  AvgSaleSaleprice1Day, AvgSaleSaleprice2Day, AvgSaleSaleprice3Day,
+							        	  AvgSaleSaleprice4Day, AvgSaleSaleprice5Day, AvgSaleSaleprice6Day,
+							        	  AvgSaleSaleprice7Day, AvgSaleSaleprice8Day, AvgSaleSaleprice9Day
+        								  ], {
+            type: 'line',
+            width: '99.5%',
+            height: '100',
+            lineColor: '#ffc750',
+            fillColor: '',
+            lineWidth: 2,
+            spotColor: undefined,
+            minSpotColor: undefined,
+            maxSpotColor: undefined,
+            highlightSpotColor: undefined,
+            highlightLineColor: undefined,
+            resize:true,
+        });
+        // ============================================================== 
+        // Chart Balance Bar
+        // ============================================================== 
+        var ctx = document.getElementById("chartjs_balance_bar").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            
+            data: {
+                labels: ["Current", "1-30", "31-60", "61-90", "91+"],
+                datasets: [{
+                    label: 'Aged Payables',
+                    data: [500, 1000, 1500, 3700, 2500],
+                    backgroundColor: "rgba(89, 105, 255,.8)",
+                    borderColor: "rgba(89, 105, 255,1)",
+                    borderWidth:2
+
+                }, {
+                    label: 'Aged Receiables',
+                    data: [1000, 1500, 2500, 3500, 2500],
+                    backgroundColor: "rgba(255, 64, 123,.8)",
+                    borderColor: "rgba(255, 64, 123,1)",
+                    borderWidth:2
+                }]
+
+            },
+            options: {
+                legend: {
+                        display: true,
+
+                        position: 'bottom',
+
+                        labels: {
+                            fontColor: '#71748d',
+                            fontFamily:'Circular Std Book',
+                            fontSize: 14,
+                        }
+                },
+
+                    scales: {
+                        xAxes: [{
+                    ticks: {
+                        fontSize: 14,
+                         fontFamily:'Circular Std Book',
+                         fontColor: '#71748d',
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontSize: 14,
+                         fontFamily:'Circular Std Book',
+                         fontColor: '#71748d',
+                    }
+                }]
+                    }
+        	}
+
+    	});
+     
+        
+        // ============================================================== 
+        // Gross Profit Margin
+        // ============================================================== 
+       Morris.Donut({
+                    element: 'morris_gross',
+
+                    data: [
+                        { value: 94, label: 'Budget' },
+                        { value: 15, label: '' }
+                       
+                    ],
+                 
+                    labelColor: '#5969ff',
+
+                    colors: [
+                        '#5969ff',
+                        '#a8b0ff'
+                       
+                    ],
+
+                    formatter: function(x) { return x + "%" },
+                      resize: true
+
+                });
+
+        // ============================================================== 
+        // Net Profit Margin
+        // ============================================================== 
+        Morris.Donut({
+                    element: 'morris_profit',
+
+                    data: [
+                        { value: 93, label: 'Profit' },
+                        { value: 15, label: '' }                       
+                    ],
+                 
+                    labelColor: '#ff407b',
+                    colors: [
+                        '#ff407b',
+                        '#ffd5e1'                       
+                    ],
+
+                    formatter: function(x) { return x + "%" },
+                      resize: true
+                });
+
+        // ============================================================== 
+        //EBIT Morris
+        // ============================================================== 
+
+        Morris.Bar({
+            element: 'ebit_morris',
+            data: [
+                { x: '2011 Q1', y: 20000 },
+                { x: '2011 Q2', y: 24000 },
+                { x: '2011 Q3', y: 33000 },
+                { x: '2011 Q4', y: 40000 },
+                { x: '2012 Q1', y: 25000 },
+                { x: '2012 Q2', y: 70000 },
+                { x: '2012 Q3', y: 52000 },
+                { x: '2012 Q4', y: 39000 },
+                { x: '2013 Q1', y: 80000 }
+            ],
+            xkey: 'x',
+            ykeys: ['y'],
+            labels: ['Y'],
+            barColors: ['#ff407b'],
+            preUnits: ["$"]
+
+        });
+        
+        // ============================================================== 
+        //EBIT Morris
+        // ============================================================== 
+        var a = c3.generate({
+            bindto: "#goodservice",
+            size: { height: 350 },
+            color: { pattern: ["#5969ff", "#ff407b"] },
+            data: {
+                columns: [
+                    ["Service", 20000, 25000, 30000, 80000, 10000, 50000],
+                    ["Average", 25000, 25000, 25000, 25000, 25000, 25000]
+                ],
+                types: { Service: "bar" }
+            },
+            bar: {
+
+                width: 45
+
+            },
+            legend: {
+      show: true
+    },
+            axis: {
+                y: {
+                    tick: {
+                        format: d3.format("$")
+                    }
+                }
+
+            },
+
+        });
+
+        // ============================================================== 
+        // Disputed vs Overdue Invoices
+        // ============================================================== 
+        var data = {
+            labels: ['Disputed Invoice', 'Overdue Invoice'],
+            series: [20, 15]
+        };
+
+        var options = {
+            labelInterpolationFnc: function(value) {
+                return value[0]
+            }
+        };
+
+        var responsiveOptions = [
+            ['screen and (min-width: 640px)', {
+                chartPadding: 30,
+                labelOffset: 100,
+                labelDirection: 'explode',
+                labelInterpolationFnc: function(value) {
+                    return value;
+                }
+            }],
+            ['screen and (min-width: 1024px)', {
+                labelOffset: 80,
+                chartPadding: 20
+            }]
+        ];
+
+        new Chartist.Pie('.ct-chart-invoice', data, options, responsiveOptions);
+
+        // ============================================================== 
+        // Disputed vs Overdue Invoices
+        // ============================================================== 
+
+        new Chartist.Line('.ct-chart-line-invoice', {
+            labels: ['Jan 2018', 'Mar 2018', 'May 2018', 'Jul 2018', 'Sep 2018', 'Oct 2018', 'Nov 2018'],
+            series: [
+                [12, 8, 6, 7, 3, 2.5, 7, 8],
+                [7, 7, 7, 7, 7, 7, 7, 7]
+
+            ]
+        }, {
+            fullWidth: true,
+            chartPadding: {
+                right: 40
+            },
+            axisY: {
+                labelInterpolationFnc: function(value) {
+                    return '$'+ (value / 1000);
+                }
+            },
+        });
+        
+        // ============================================================== 
+        // Accounts Payable Age
+        // ============================================================== 
+
+        var chart = c3.generate({
+            bindto: "#account",
+            color: { pattern: ["#5969ff", "#ff407b", "#25d5f2", "#ffc750"] },
+            data: {
+                // iris data from R
+                columns: [
+                    ['30 days', 120],
+                    ['60 days', 70],
+                    ['90 days', 50],
+                     ['90+ Days', 30],
+
+                ],
+                type: 'pie',                
+            }
+        });
+
+        setTimeout(function() {
+            chart.load({
+                
+            });
+        }, 1500);
+
+        setTimeout(function() {
+            chart.unload({
+                ids: 'data1'
+            });
+            chart.unload({
+                ids: 'data2'
+            });
+        }, 
+        2500
+        );
+
+        // ============================================================== 
+        // Working Capital
+        // ============================================================== 
+
+        // // Use Morris.Area instead of Morris.Line
+        Morris.Area({
+            element: 'capital',
+            behaveLikeLine: true,
+            
+            data: [
+                { x: '2010 Q1', y: 20000 },
+                { x: '2010 Q2', y: 24000 },
+                { x: '2010 Q3', y: 33000 },
+                { x: '2010 Q4', y: 40000 },
+                { x: '2011 Q1', y: 25000 },
+                { x: '2011 Q2', y: 70000 },
+                { x: '2011 Q3', y: 52000 },
+                { x: '2012 Q1', y: 39000 },
+                { x: '2012 Q2', y: 80000 }
+            ],
+            xkey: 'x',
+            ykeys: ['y'],
+            labels: ['Y'],
+            lineColors: ['#ff407b'],
+            preUnits: ["$"]
+        });
+       
+        // ============================================================== 
+        // Working Capital
+        // ============================================================== 
+        new Chartist.Bar('.ct-chart-inventory', {
+            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+            series: [
+                [800000, 1200000, 1400000, 1300000],
+                [200000, 400000, 500000, 300000],
+                [100000, 200000, 400000, 600000]
+            ]
+        }, {
+            stackBars: true,
+            axisY: {
+                labelInterpolationFnc: function(value) {
+                    return  '$' + (value / 1000);
+                }
+            }
+        }).on('draw', function(data) {
+            if (data.type === 'bar') {
+                data.element.attr({
+                    style: 'stroke-width: 30px'
+                });
+            }
+        });
+    });
+    </script> 
+    <script>    
+    $(function() {
+        "use strict";
+        // ============================================================== 
+        // Product Sales
+        // ============================================================== 
+
+        new Chartist.Bar('.ct-chart-product', {
+            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+            series: [
+                [800000, 1200000, 1400000, 1300000],
+                [200000, 400000, 500000, 300000],
+                [100000, 200000, 400000, 600000]
+            ]
+        }, {
+            stackBars: true,
+            axisY: {
+                labelInterpolationFnc: function(value) {
+                    return (value / 1000) + 'k';
+                }
+            }
+        }).on('draw', function(data) {
+            if (data.type === 'bar') {
+                data.element.attr({
+                    style: 'stroke-width: 40px'
+                });
+            }
+        });
+    });
+    
+    // ============================================================== 
+    // Product Category
+    // ============================================================== 
+    var chart = new Chartist.Pie('.ct-chart-category', {
+        series: [10, 20, 30, 40, 50, 60],
+        labels: ['Bananas', 'Apples', 'Grapes', 'Bananas1', 'Apples2', 'Grapes3']
+    }, {
+        donut: true,
+        showLabel: false,
+        donutWidth: 40
+
+    });
+
+
+    chart.on('draw', function(data) {
+        if (data.type === 'slice') {
+            // Get the total path length in order to use for dash array animation
+            var pathLength = data.element._node.getTotalLength();
+
+            // Set a dasharray that matches the path length as prerequisite to animate dashoffset
+            data.element.attr({
+                'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
+            });
+
+            // Create animation definition while also assigning an ID to the animation for later sync usage
+            var animationDefinition = {
+                'stroke-dashoffset': {
+                    id: 'anim' + data.index,
+                    dur: 1000,
+                    from: -pathLength + 'px',
+                    to: '0px',
+                    easing: Chartist.Svg.Easing.easeOutQuint,
+                    // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
+                    fill: 'freeze'
+                }
+            };
+
+            // If this was not the first slice, we need to time the animation so that it uses the end sync event of the previous animation
+            if (data.index !== 0) {
+                animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+            }
+
+            // We need to set an initial value before the animation starts as we are not in guided mode which would do that for us
+            data.element.attr({
+                'stroke-dashoffset': -pathLength + 'px'
+            });
+
+            // We can't use guided mode as the animations need to rely on setting begin manually
+            // See http://gionkunz.github.io/chartist-js/api-documentation.html#chartistsvg-function-animate
+            data.element.animate(animationDefinition, false);
+        }
+    });
+ 
+    var chart = new Chartist.Line('.ct-chart', {
+        labels: ['Mon', 'Tue', 'Wed'],
+        series: [
+            [1, 5, 2, 5],
+            [2, 3, 4, 8]
+            
+        ]
+    }, {
+        low: 0,
+        showArea: true,
+        showPoint: false,
+        fullWidth: true
+    });
+
+    chart.on('draw', function(data) {
+        if (data.type === 'line' || data.type === 'area') {
+            data.element.animate({
+                d: {
+                    begin: 2000 * data.index,
+                    dur: 2000,
+                    from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                    to: data.path.clone().stringify(),
+                    easing: Chartist.Svg.Easing.easeOutQuint
+                }
+            });
+        }
+    });
+
+    // ============================================================== 
+    // Revenue Cards
+    // ============================================================== 
+    $("#sparkline-revenue").sparkline([5, 5, 7, 7, 9, 5, 3, 5, 2, 4, 6, 7], {
+        type: 'line',
+        width: '99.5%',
+        height: '100',
+        lineColor: '#5969ff',
+        fillColor: '#dbdeff',
+        lineWidth: 2,
+        spotColor: undefined,
+        minSpotColor: undefined,
+        maxSpotColor: undefined,
+        highlightSpotColor: undefined,
+        highlightLineColor: undefined,
+        resize: true
+    });
+    
+    $("#sparkline-revenue2").sparkline([3, 7, 6, 4, 5, 4, 3, 5, 5, 2, 3, 1], {
+        type: 'line',
+        width: '99.5%',
+        height: '100',
+        lineColor: '#ff407b',
+        fillColor: '#ffdbe6',
+        lineWidth: 2,
+        spotColor: undefined,
+        minSpotColor: undefined,
+        maxSpotColor: undefined,
+        highlightSpotColor: undefined,
+        highlightLineColor: undefined,
+        resize: true
+    });
+    
+    $("#sparkline-revenue3").sparkline([5, 3, 4, 6, 5, 7, 9, 4, 3, 5, 6, 1], {
+        type: 'line',
+        width: '99.5%',
+        height: '100',
+        lineColor: '#25d5f2',
+        fillColor: '#dffaff',
+        lineWidth: 2,
+        spotColor: undefined,
+        minSpotColor: undefined,
+        maxSpotColor: undefined,
+        highlightSpotColor: undefined,
+        highlightLineColor: undefined,
+        resize: true
+    });
+
+    $("#sparkline-revenue4").sparkline([6, 5, 3, 4, 2, 5, 3, 8, 6, 4, 5, 1], {
+        type: 'line',
+        width: '99.5%',
+        height: '100',
+        lineColor: '#fec957',
+        fillColor: '#fff2d5',
+        lineWidth: 2,
+        spotColor: undefined,
+        minSpotColor: undefined,
+        maxSpotColor: undefined,
+        highlightSpotColor: undefined,
+        highlightLineColor: undefined,
+        resize: true,
+    });
+
+    // ============================================================== 
+    // Total Revenue
+    // ============================================================== 
+    Morris.Area({
+        element: 'morris_totalrevenue',
+        behaveLikeLine: true,
+        data: [
+            { x: '2016 Q1', y: 0, },
+            { x: '2016 Q2', y: 7500, },
+            { x: '2017 Q3', y: 15000, },
+            { x: '2017 Q4', y: 22500, },
+            { x: '2018 Q5', y: 30000, },
+            { x: '2018 Q6', y: 40000, }
+        ],
+        xkey: 'x',
+        ykeys: ['y'],
+        labels: ['Y'],
+        lineColors: ['#5969ff'],
+        resize: true
+
+    });
+    
+    // ============================================================== 
+    // Revenue By Categories
+    // ============================================================== 
+
+    var chart = c3.generate({
+        bindto: "#c3chart_category",
+        data: {
+            columns: [
+                ['Men', 100],
+                ['Women', 80],
+                ['Accessories', 50],
+                ['Children', 40],
+                ['Apperal', 20],
+
+            ],
+            type: 'donut',
+
+            onclick: function(d, i) { console.log("onclick", d, i); },
+            onmouseover: function(d, i) { console.log("onmouseover", d, i); },
+            onmouseout: function(d, i) { console.log("onmouseout", d, i); },
+
+            colors: {
+                Men: '#5969ff',
+                Women: '#ff407b',
+                Accessories: '#25d5f2',
+                Children: '#ffc750',
+                Apperal: '#2ec551',
+            }
+        },
+        donut: {
+            label: {
+                show: false
+            }
+        },
+    });
+    </script>      
+</body> 
+</html>

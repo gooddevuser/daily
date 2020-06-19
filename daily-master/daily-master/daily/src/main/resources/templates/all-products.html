@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <head th:include="head :: head"> </head>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <header th:include="header :: header"> </header>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <sidebar th:include="sidebar :: sidebar"> </sidebar>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+                        <h5 class="card-header">모든 상품 보기</h5>
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12" th:if="${ #lists.size(products) } > 0" th:each="product : ${ products }">
+                                    <div class="product-thumbnail">
+                                        <div class="product-img-head">
+                                            <div class="product-img">
+                                                <a th:href="@{detail-product(pno=${ product.pno })}"><img src="assets/images/eco-product-img-1.png" alt="" class="img-fluid"></a></div>
+                                        </div>
+                                        <div class="product-content">
+                                            <div class="product-content-head">
+                                            	<a th:href="@{detail-product(pno=${ product.pno })}"><h5 th:text="${product.content1}"></h5></a>   
+                                            	<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 1 }" >제습│청소 ─ 제습제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 2 }" >제습│청소 ─ 베이킹소다|구연산</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 3 }" >제습│청소 ─ 곰팡이제거제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 4 }" >제습│청소 ─ 락스|배수구세정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 5 }" >제습│청소 ─ 변기세정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 6 }" >주방│세탁 ─ 세탁세제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 7 }" >주방│세탁 ─ 세탁조세정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 8 }" >주방│세탁 ─ 주방세제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 9 }" >주방│세탁 ─ 주방잡화</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 10 }" >구강│청결 ─ 치약</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 11 }" >구강│청결 ─ 칫솔</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 12 }" >구강│청결 ─ 구강청정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 13 }" >구강│청결 ─ 핸드워시</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 14 }" >뷰티│케어 ─ 핸드크림</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 15 }" >뷰티│케어 ─ 헤어케어</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 16 }" >뷰티│케어 ─ 시트 마스크</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 17 }" >뷰티│케어 ─ 쿨링패치</h3>
+												<h3 class="product-title" th:if="${product.category1 == 5 }" >수납│욕실</h3>
+												<h3 class="product-title" th:if="${product.category1 == 6 }" >식품</h3>
+                                            	<a th:href="@{detail-product(pno=${ product.pno })}"><h3 th:text="${product.pname}"></h3></a>                                 
+                                                <div class="product-rating d-inline-block">
+                                                	<div th:if="${product.star == 0}">
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${product.star == 1}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${product.star == 2}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${product.star == 3}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                    <div th:if="${product.star == 4}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                    <div th:if="${product.star == 5}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    </div>
+                                                </div>
+                                                <div class="product-price" th:text="${product.price}+원" style="text-decoration:line-through;"></div>
+                                                <div class="product-price" th:text="${product.saleprice}+원" style="margin-top: 25px; font-size:25px; font-weight: 900; color: black;"></div>
+                                            </div>
+                                            <div class="product-btn" th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2}">
+                                                <a th:href="@{all-product1(pno=${ product.pno })}" th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2} and ${product.pactive == 9}" class="btn btn-primary mt-3" style="font-size:15px">상품승인하기</a>
+                                                <!-- <a href="#" class="btn btn-outline-light">자세히 보기</a>
+                                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item active"><a class="page-link " href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
+                        <h5 class="card-header">검색</h5>
+                        
+                        <form id="all-products" data-parsley-validate="" novalidate="" method="post">                        
+                            <div class="product-sidebar">                            
+                            	<div class="product-sidebar-widget">
+                                    <h4 class="product-sidebar-widget-title">정렬기준</h4>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="34" name="radio">
+                                        <label class="custom-control-label" for="34" value="34">가나다순</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="35" name="radio">
+                                        <label class="custom-control-label" for="35" value="35">낮은금액순</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="36" name="radio">
+                                        <label class="custom-control-label" for="36" value="36">높은금액순</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="37" name="radio">
+                                        <label class="custom-control-label" for="37" value="37">주문순</label>
+                                    </div>
+                                </div>
+                                <div class="product-sidebar-widget">
+                                    <h4 class="product-sidebar-widget-title">별점순</h4>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="38" name="radio">
+                                        <label class="custom-control-label" for="38" value="38"><i class="fas fa-star rating-color fa-xs"></i></label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="39" name="radio">
+                                        <label class="custom-control-label" for="39" value="39"><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i></label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="40" name="radio">
+                                        <label class="custom-control-label" for="40" value="40"><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i></label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="41" name="radio">
+                                        <label class="custom-control-label" for="41" value="41"><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i></label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="42" name="radio">
+                                        <label class="custom-control-label" for="42" value="42"><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i></label>
+                                    </div>
+                                </div>
+                                <div class="product-sidebar-widget">
+                                    <h4 class="product-sidebar-widget-title">모든날짜순</h4>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="43" name="radio">
+                                        <label class="custom-control-label" for="43" value="43">지난 1시간</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="44" name="radio">
+                                        <label class="custom-control-label" for="44" value="44">지난 1일</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="45" name="radio">
+                                        <label class="custom-control-label" for="45" value="45">지난 1주</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="46" name="radio">
+                                        <label class="custom-control-label" for="46" value="46">지난 1개월</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="47" name="radio">
+                                        <label class="custom-control-label" for="47" value="47">지난 1년</label>
+                                    </div>
+                                </div>
+                                <div class="product-sidebar-widget">
+                                    <h4 class="product-sidebar-widget-title">카테고리순</h4>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="1" name="radio">
+                                        <label class="custom-control-label" for="1" value="1">제습제</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="2" name="radio">
+                                        <label class="custom-control-label" for="2" value="2">베이킹소다 | 구연산</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="3" name="radio">
+                                        <label class="custom-control-label" for="3" value="3">곰팡이제거제</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="4" name="radio">
+                                        <label class="custom-control-label" for="4" value="4">락스 | 배수구세정제</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="5" name="radio">
+                                        <label class="custom-control-label" for="5" value="5">변기세정제</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="6" name="radio">
+                                        <label class="custom-control-label" for="6" value="6">세탁세제</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="7" name="radio">
+                                        <label class="custom-control-label" for="7" value="7">세탁조세정제</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="8" name="radio">
+                                        <label class="custom-control-label" for="8" value="8">주방세제</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="9" name="radio">
+                                        <label class="custom-control-label" for="9" value="9">주방잡화</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="10" name="radio">
+                                        <label class="custom-control-label" for="10" value="10">치약</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="11" name="radio">
+                                        <label class="custom-control-label" for="11" value="11">칫솔</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="12" name="radio">
+                                        <label class="custom-control-label" for="12" value="12">구강청정제</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="13" name="radio">
+                                        <label class="custom-control-label" for="13" value="13">핸드워시</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="14" name="radio">
+                                        <label class="custom-control-label" for="14" value="14">핸드크림</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="15" name="radio">
+                                        <label class="custom-control-label" for="15" value="15">헤어케어</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="16" name="radio">
+                                        <label class="custom-control-label" for="16" value="16">시트 마스크</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="17" name="radio">
+                                        <label class="custom-control-label" for="17" value="17">쿨링패치</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="18" name="radio">
+                                        <label class="custom-control-label" for="18" value="18">수납│욕실</label>
+                                    </div>
+                                </div>
+                                <div class="product-sidebar-widget">
+                                    <h4 class="product-sidebar-widget-title">사이즈순</h4>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                    	<input type="radio" class="custom-control-input" id="size1" name="radio">
+                                        <label class="custom-control-label" for="size1" value="20">Small</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="size2" name="radio">
+                                        <label class="custom-control-label" for="size2" value="21">Medium</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                    	<input type="radio" class="custom-control-input" id="size3" name="radio">
+                                        <label class="custom-control-label" for="size3" value="22">Large</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                    	<input type="radio" class="custom-control-input" id="size4" name="radio">
+                                        <label class="custom-control-label" for="size4" value="23">Extra Large</label>
+                                    </div>
+                                </div>
+                                <div class="product-sidebar-widget">
+                                    <h4 class="product-sidebar-widget-title">컬러</h4>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" id="color-1" name="radio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-1" value="24">파랑</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" id="color-2" name="radio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-2" value="25">노랑</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" id="color-3" name="radio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-3" value="26">빨강</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" id="color-4" name="radio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-4" value="27">초록</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" id="color-5" name="radio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-5" value="28">주황</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" id="color-6" name="radio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-6" value="29">남색</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" id="color-7" name="radio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-7" value="30">보라</label>
+                                    </div>
+                                </div>
+                                <div class="product-sidebar-widget">
+                                    <h4 class="product-sidebar-widget-title">금액</h4>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="price-1" name="radio">
+                                        <label class="custom-control-label" for="price-1" value="31">1만원대</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="price-2" name="radio">
+                                        <label class="custom-control-label" for="price-2" value="32">50만원대</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black ">
+                                        <input type="radio" class="custom-control-input" id="price-3" name="radio">
+                                        <label class="custom-control-label" for="price-3" value="33">100만원대</label>
+                                    </div>
+                                </div>
+                                <div class="product-sidebar-widget">
+                                    <button class="btn btn-outline-light btn-secondary btn-lg btn-block" type="submit">검색하기</button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end wrapper  -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+        <!-- ============================================================== -->
+        <!-- end main wrapper  -->
+        <!-- ============================================================== -->
+        <!-- Optional JavaScript -->
+        <!-- jquery 3.3.1 -->
+        <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+        <!-- bootstap bundle js -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <!-- slimscroll js -->
+        <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+        <!-- main js -->
+        <script src="assets/libs/js/main-js.js"></script>
+</body>
+ 
+</html>

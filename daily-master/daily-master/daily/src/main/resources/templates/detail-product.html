@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+ 
+<head>
+    <head th:include="head :: head"> </head>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <header th:include="header :: header"> </header>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <sidebar th:include="sidebar :: sidebar"> </sidebar>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">   
+                <h5 class="card-header">상품 정보</h5>                 
+                    <div class="row">
+                        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pr-xl-0 pr-lg-0 pr-md-0  m-b-30">
+                                    <div class="product-slider">
+                                        <div id="productslider-1" class="product-carousel carousel slide" data-ride="carousel">
+                                            <ol class="carousel-indicators">
+                                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                            </ol>
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <img class="d-block" src="assets/images/eco-slider-img-1.png" alt="First slide">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img class="d-block" src="assets/images/eco-slider-img-2.png" alt="Second slide">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img class="d-block" src="assets/images/eco-slider-img-3.png" alt="Third slide">
+                                                </div>
+                                            </div>
+                                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                             <span class="sr-only">Previous</span>
+                                                  </a>
+                                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                 <span class="sr-only">Next</span>
+                                                     </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-xl-0 pl-lg-0 pl-md-0 border-left m-b-30">
+                                <form action="detail-product" id="validationform" data-parsley-validate="" novalidate="" method="post">
+                                <input type="hidden" name="pno" th:value="${product.pno}"> 
+                                <input type="hidden" name="uno" th:value="${session.loginuser.uno}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="oactive" th:value="0"> 
+                                <input type="hidden" name="uname" th:value="${session.loginuser.uname}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="id" th:value="${session.loginuser.id}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="nickname" th:value="${session.loginuser.nickname}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="gender" th:value="${session.loginuser.gender}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="age" th:value="${session.loginuser.age}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="address1" th:value="${session.loginuser.address1}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="address2" th:value="${session.loginuser.address2}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="email" th:value="${session.loginuser.email}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="url" th:value="${session.loginuser.url}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="interest" th:value="${session.loginuser.interest}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="pname" th:value="${product.pname}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="content1" th:value="${product.content1}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="category1" th:value="${product.category1}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="category2" th:value="${product.category2}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="content2" th:value="${product.content2}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="size" th:value="${product.size}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="color" th:value="${product.color}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="pcode" th:value="${product.pcode}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="zip" th:value="${session.loginuser.zip}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="tel" th:value="${session.loginuser.tel}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="price" th:value="${product.price}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="saleprice" th:value="${product.saleprice}" th:if="${session.loginuser != null}">
+                                <input type="hidden" name="discount" th:value="${product.discount}" th:if="${session.loginuser != null}">
+                                
+                                    <div class="product-details">
+                                        <div class="border-bottom pb-3 mb-3">       
+                                        		<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 1 }" >제습│청소 ─ 제습제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 2 }" >제습│청소 ─ 베이킹소다|구연산</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 3 }" >제습│청소 ─ 곰팡이제거제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 4 }" >제습│청소 ─ 락스|배수구세정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 5 }" >제습│청소 ─ 변기세정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 6 }" >주방│세탁 ─ 세탁세제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 7 }" >주방│세탁 ─ 세탁조세정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 8 }" >주방│세탁 ─ 주방세제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 9 }" >주방│세탁 ─ 주방잡화</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 10 }" >구강│청결 ─ 치약</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 11 }" >구강│청결 ─ 칫솔</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 12 }" >구강│청결 ─ 구강청정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 13 }" >구강│청결 ─ 핸드워시</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 14 }" >뷰티│케어 ─ 핸드크림</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 15 }" >뷰티│케어 ─ 헤어케어</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 16 }" >뷰티│케어 ─ 시트 마스크</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 17 }" >뷰티│케어 ─ 쿨링패치</h3>
+												<h3 class="product-title" th:if="${product.category1 == 5 }" >수납│욕실</h3>
+												<h3 class="product-title" th:if="${product.category1 == 6 }" >식품</h3>                                     
+                                            <div class="product-rating d-inline-block">
+                                                	<div th:if="${product.star == 0}">
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${product.star == 1}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${product.star == 2}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${product.star == 3}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                    <div th:if="${product.star == 4}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                    <div th:if="${product.star == 5}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    </div>
+                                                </div>                                                
+                                            <h2 class="mb-3 mt-3" th:text="${product.pname}"></h2>
+                                            <h3 class="mb-0 text-primary" th:text="${product.price}+원" style="text-decoration:line-through;"></h3>
+                                            <h1 class="mb-0 text-primary" th:text="${product.saleprice}+원" style="color:black !important"></h1>
+                                        </div>
+                                        <div class="product-colors border-bottom">
+                                            <h4 >색상선택</h4>
+                                            <input th:if="${product.color == '파랑'}" type="radio" class="radio" id="radio-1" name="group" />
+                                            <label th:if="${product.color == '파랑'}" for="radio-1"></label>
+                                            <input th:if="${product.color == '노랑'}" type="radio" class="radio" id="radio-2" name="group" />
+                                            <label th:if="${product.color == '노랑'}" for="radio-2"></label>
+                                            <input th:if="${product.color == '빨강'}" type="radio" class="radio" id="radio-3" name="group" />
+                                            <label th:if="${product.color == '빨강'}" for="radio-3"></label>
+                                            <input th:if="${product.color == '초록'}" type="radio" class="radio" id="radio-4" name="group" />
+                                            <label th:if="${product.color == '초록'}" for="radio-4"></label>                                            
+                                            <input th:if="${product.color == '주황'}" type="radio" class="radio" id="radio-5" name="group" />
+                                            <label th:if="${product.color == '주황'}" for="radio-5"></label>
+                                            <input th:if="${product.color == '남색'}" type="radio" class="radio" id="radio-5" name="group" />
+                                            <label th:if="${product.color == '남색'}" for="radio-5"></label>
+                                            <input th:if="${product.color == '보라'}" type="radio" class="radio" id="radio-6" name="group" />
+                                            <label th:if="${product.color == '보라'}" for="radio-6"></label>
+                                        </div>
+                                        <div class="product-size border-bottom">
+                                            <h4>사이즈</h4>
+                                            <div class="btn-group" role="group" aria-label="First group">
+                                                <button th:if="${product.size == 'Small'}" type="button" class="btn btn-outline-light">Small</button>
+                                                <button th:if="${product.size == 'Medium'}" type="button" class="btn btn-outline-light">Medium</button>
+                                                <button th:if="${product.size == 'Large'}" type="button" class="btn btn-outline-light">Large</button>
+                                                <button th:if="${product.size == 'Extra Large'}" type="button" class="btn btn-outline-light">Extra Large</button>
+                                            </div>                                            
+                                            <div class="product-qty">
+                                                <h4>수량</h4>
+                                                <div class="quantity">
+                                                    <input name="quantity" type="number" min="1" max="9" step="1" value="1"><div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                        <div class="product-description">
+                                            <h4 class="mb-1">간략한설명</h4>
+                                            <p th:text="${product.content1}"></p>
+                                            <a type="submit" th:if="${session.loginuser != null}" th:href="@{add-order(uno=${ session.loginuser.uno })}" id="addOrderBtn" class="btn btn-primary btn-block btn-lg">카트에 담기</a>
+                                        </div>
+                                    </div>
+                                    </form> 
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-60">
+                                    <div class="simple-card">
+                                        <ul class="nav nav-tabs" id="myTab5" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active border-left-0" id="product-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="product-tab-1" aria-selected="true">자세한 설명</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="product-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="product-tab-2" aria-selected="false">후기</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="myTabContent5">
+                                            <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="product-tab-1">
+                                                <p th:text="${product.content2}"></p>                                                
+                                            </div>
+                                            <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="product-tab-2">
+                                            
+                                                <div class="review-block" th:if="${ #lists.size(reviews) } > 0" th:each="review : ${ reviews }">
+                                                	<h3 th:text="제목 + ' : ' +${review.title}"></h3> 
+                                                    <p class="review-text font-italic m-0" th:text="'“'+${review.review}+'”'"></p>
+                                                    <div class="rating-star mb-4" th:if="${review.rstar == 0}">
+                                                        <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+                                                    </div>
+                                                    <div class="rating-star mb-4" th:if="${review.rstar == 1}">
+                                                        <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+                                                    </div>
+                                                    <div class="rating-star mb-4" th:if="${review.rstar == 2}">
+                                                        <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+                                                    </div>
+                                                    <div class="rating-star mb-4" th:if="${review.rstar == 3}">
+                                                        <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+                                                    </div>
+                                                    <div class="rating-star mb-4" th:if="${review.rstar == 4}">
+                                                        <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+                                                    </div>
+                                                    <div class="rating-star mb-4" th:if="${review.rstar == 5}">
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                        <i class="fa fa-fw fa-star"></i>
+                                                    </div>
+                                                    <span class="text-dark font-weight-bold" th:text="글쓴이 + ' : ' +${review.rwriter}"></span> <small class="text-mute" th:text="'(' +${review.rdate} + ')'"></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-10">
+                                    <h3>관련 상품</h3>
+                                </div>
+                                                                
+                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12" th:if="${ #lists.size(products) } > 0" th:each="product : ${ products }">
+                                    <div class="product-thumbnail">
+                                        <div class="product-img-head">
+                                            <div class="product-img">
+                                                <a th:href="@{detail-product(pno=${ product.pno })}"><img src="assets/images/eco-product-img-1.png" alt="" class="img-fluid"></a></div>
+                                        </div>
+                                        <div class="product-content">
+                                            <div class="product-content-head">
+                                            	<a th:href="@{detail-product(pno=${ product.pno })}"><h5 th:text="${product.content1}"></h5></a>   
+                                            	<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 1 }" >제습│청소 ─ 제습제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 2 }" >제습│청소 ─ 베이킹소다|구연산</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 3 }" >제습│청소 ─ 곰팡이제거제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 4 }" >제습│청소 ─ 락스|배수구세정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 5 }" >제습│청소 ─ 변기세정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 6 }" >주방│세탁 ─ 세탁세제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 7 }" >주방│세탁 ─ 세탁조세정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 8 }" >주방│세탁 ─ 주방세제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 9 }" >주방│세탁 ─ 주방잡화</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 10 }" >구강│청결 ─ 치약</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 11 }" >구강│청결 ─ 칫솔</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 12 }" >구강│청결 ─ 구강청정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 13 }" >구강│청결 ─ 핸드워시</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 14 }" >뷰티│케어 ─ 핸드크림</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 15 }" >뷰티│케어 ─ 헤어케어</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 16 }" >뷰티│케어 ─ 시트 마스크</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 17 }" >뷰티│케어 ─ 쿨링패치</h3>
+												<h3 class="product-title" th:if="${product.category1 == 5 }" >수납│욕실</h3>
+												<h3 class="product-title" th:if="${product.category1 == 6 }" >식품</h3>
+                                            	<a th:href="@{detail-product(pno=${ product.pno })}"><h3 th:text="${product.pname}"></h3></a>                                 
+                                                <div class="product-rating d-inline-block">
+                                                	<div th:if="${product.star == 0}">
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${product.star == 1}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${product.star == 2}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${product.star == 3}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                    <div th:if="${product.star == 4}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                    <div th:if="${product.star == 5}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    </div>
+                                                </div>
+                                                <div class="product-price" th:text="${product.price}+원" style="text-decoration:line-through;"></div>
+                                                <div class="product-price" th:text="${product.saleprice}+원" style="margin-top: 25px; font-size:25px; font-weight: 900; color: black;"></div>
+                                            </div>
+                                            <div class="product-btn">
+                                            	<a th:href="@{all-product1(pno=${ product.pno })}" th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2} and ${product.pactive == 9}" class="btn btn-primary mt-3" style="font-size:15px">상품승인하기</a>
+                                                <!-- <a href="#" class="btn btn-outline-light">자세히 보기</a>
+                                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- footer -->
+                <!-- ============================================================== -->
+                <div class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="text-md-right footer-links d-none d-sm-block">
+                                    <a href="javascript: void(0);">About</a>
+                                    <a href="javascript: void(0);">Support</a>
+                                    <a href="javascript: void(0);">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end footer -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- end wrapper  -->
+            <!-- ============================================================== -->
+        </div>
+
+    </div>
+        <!-- ============================================================== -->
+        <!-- end main wrapper  -->
+        <!-- ============================================================== -->
+        <!-- Optional JavaScript -->
+        <!-- jquery 3.3.1 -->
+        <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+        <!-- bootstap bundle js -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <!-- slimscroll js -->
+        <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+        <!-- main js -->
+        <script src="assets/libs/js/main-js.js"></script>
+        <script>
+        jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
+        jQuery('.quantity').each(function() {
+            var spinner = jQuery(this),
+                input = spinner.find('input[type="number"]'),
+                btnUp = spinner.find('.quantity-up'),
+                btnDown = spinner.find('.quantity-down'),
+                min = input.attr('min'),
+                max = input.attr('max');
+
+            btnUp.click(function() {
+                var oldValue = parseFloat(input.val());
+                if (oldValue >= max) {
+                    var newVal = oldValue;
+                } else {
+                    var newVal = oldValue + 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
+
+            btnDown.click(function() {
+                var oldValue = parseFloat(input.val());
+                if (oldValue <= min) {
+                    var newVal = oldValue;
+                } else {
+                    var newVal = oldValue - 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
+
+        });
+        </script>
+        
+<script>  
+$("#addOrderBtn").click(function() {
+	$("#validationform").submit();
+});
+</script>
+</body>
+
+ 
+</html>

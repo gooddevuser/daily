@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daily.mapper.PointMapper">
+	
+	<insert id="insertPoint" parameterType="com.daily.vo.Point">
+	insert into daily_point(
+			uno,tcode,			
+			tcategory,point,
+			validdate1,validdate2,			
+			mailtitle,mailcontent
+			
+			)
+	values(
+			#{uno},#{tcode},
+			#{tcategory},#{point},
+			#{validdate1},#{validdate2},
+			#{mailtitle},#{mailcontent}
+			)
+	</insert>
+	
+	<insert id="insertPointAllUser" parameterType="com.daily.vo.Point">
+	insert into daily_point(
+			uno,tcode,			
+			tcategory,point,
+			validdate1,validdate2,			
+			mailtitle,mailcontent
+			
+			)
+	values(
+			'99999',#{tcode},
+			#{tcategory},#{point},
+			#{validdate1},#{validdate2},
+			#{mailtitle},#{mailcontent}
+			)
+	</insert>
+	
+	<select id="selectUserPoint" resultType="com.daily.vo.Point">
+	select *
+	from daily_point
+	</select>
+	
+	<update id="updateTargetByUno" parameterType="com.daily.vo.User">
+	update daily_order
+	set target = #{email}
+	where uno = #{uno}
+	</update>
+	
+	<select id="selectEmailByUno" parameterType="int" resultType="com.daily.vo.User">
+	select email
+	from daily_user
+	where uno = #{uno}
+	</select>
+	
+	<select id="selectUserPointByUno" parameterType="int" resultType="com.daily.vo.Point">
+	select *
+	from daily_point
+	where uno = #{uno}
+	</select>
+	
+</mapper>

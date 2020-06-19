@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+ 
+<head>
+    <head th:include="head :: head"> </head>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+         <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <header th:include="header :: header"> </header>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <sidebar th:include="sidebar :: sidebar"> </sidebar>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">            
+                    <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- valifation types -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">자주묻는질문</h5>
+                                	<div id="accordion">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <h5 class="mb-0">
+                                               <button class="btn btn-link" style="font-size:20px; font-weight: 500;" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                               #1. 아동돌봄쿠폰으로 사용한다고 미리 이야기해야 하나요?
+                                               </button>
+                                              </h5>
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                            <div class="card-body" style="text-align:center;">아동돌봄쿠폰 사용이 가능한지 확인하지 않아도 됩니다. <br>일반카드를 이용할 때처럼 자동으로 돌봄포인트가 사용됩니다. 이는 사용하는 카드를 통해 정책지원을 받은 돌봄포인트를 신속하게 사용하도록 유도함으로써, <br>코로나19로 매우 어려운 지역경제가 빠르게 활성화될 수 있도록 하기 위한 것입니다.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingTwo">
+                                            <h5 class="mb-0">
+                                               <button class="btn btn-link collapsed" style="font-size:20px; font-weight: 500;" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                #2. 남은 돌봄포인트는 어떻게 확인할 수 있나요?
+                                             </button>       </h5>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                            <div class="card-body" style="text-align:center;">사용하는 카드의 고객센터 등에서 언제든지 남은 돌봄포인트를 확인하실 수 있습니다. <br>현재 사용하는 휴대전화를 통해 돌봄포인트 사용 시 문자안내를 받을 수도 있습니다.</div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingThree">
+                                            <h5 class="mb-0">
+                            					<button class="btn btn-link collapsed" data-toggle="collapse" style="font-size:20px; font-weight: 500;" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                 				#3. 돌봄포인트를 사용하기 위해 재발급받았는데 카드번호가 달라지면 어떻게 하죠?
+                                             	</button>
+                                                       </h5>
+                                        </div>
+                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                            <div class="card-body" style="text-align:center;">돌봄포인트를 지급받은 카드를 분실하거나 파손되어 쓸수 없게 되는 경우에는 해당 카드사를 고객센터 등을 통해 영보통 영업일 기준 4~5일 이내로 카드를 재발급받아 사용할 수 있습니다.<br> 또한 돌봄포인트는 개인 자격으로 관리됩니다. <br>카드를 재발급 받은 경우, 재발급 카드의 카드번호가 달라져도 돌봄포인트는 그대로 유지되며, 사용이 가능합니다.</div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingThree1">
+                                            <h5 class="mb-0">
+                            					<button class="btn btn-link collapsed" data-toggle="collapse" style="font-size:20px; font-weight: 500;" data-target="#collapseThree1" aria-expanded="false" aria-controls="collapseThree1">
+                                 				#4. 아동돌봄포인트가 결제될 줄 알았는데 결제가 되지 않아요.
+                                             	</button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseThree1" class="collapse" aria-labelledby="headingThree1" data-parent="#accordion">
+                                            <div class="card-body" style="text-align:center;">아동돌봄쿠폰은 사용자 편의를 높이기 위해 아동이 거주하는 광역자치단체(시·도)에서 자유롭게 사용할 수 있습니다. <br>만약 결제가 되지 않았다면 아동이 거주하는 광역자치단체가 맞는지 확인해 보세요.</div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingThree2">
+                                            <h5 class="mb-0">
+                            					<button class="btn btn-link collapsed" data-toggle="collapse" style="font-size:20px; font-weight: 500;" data-target="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
+                                 				#5. 자동결제가 되는 매장인지 아닌지 어떻게 구분하나요?
+                                             	</button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseThree2" class="collapse" aria-labelledby="headingThree2" data-parent="#accordion">
+                                            <div class="card-body" style="text-align:center;">대형마트와 유흥업소, 온라인쇼핑몰 등 일부를 제외하고 <br>일반카드 사용이 가능한 전통시장, 동네마트(하나로마트 포함), 주유소, 병의원, 음식점, 서점 등 대부분의 가맹점에서 사용할 수 있습니다.
+                                        	</div>
+                                    	</div>
+                                	</div>
+                                	<div class="card">
+                                        <div class="card-header" id="headingThree3">
+                                            <h5 class="mb-0">
+                            					<button class="btn btn-link collapsed" data-toggle="collapse" style="font-size:20px; font-weight: 500;" data-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3">
+                                 				#6. 아동돌봄쿠폰으로 보육료 결제가 되나요? 마트에서 장을 보았는데 이번에는 결제가 되지 않았어요.
+                                             	</button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseThree3" class="collapse" aria-labelledby="headingThree3" data-parent="#accordion">
+                                            <div class="card-body" style="text-align:center;">보육료 및 임신출산 지원 바우처와 중복해서 사용하실 수 없습니다. <br>아동돌봄쿠폰이 보육료를 지원하는 아이행복카드와 임신·출산 등을 지원하는 국민행복카드에 지급되었기 때문에 중복해서 결제되는 것을 방지하기 위한 것입니다. <br>따라서 국민행복카드의 경우, 보건위생물품 바우처로 인식되는 기저귀, 분유, 생리대 등을 함께 결제하시는 경우에는 쿠폰 사용이 제한될 수 있습니다.
+                                        	</div>
+                                    	</div>
+                                	</div>
+                                	<div class="card">
+                                        <div class="card-header" id="headingThree4">
+                                            <h5 class="mb-0">
+                            					<button class="btn btn-link collapsed" data-toggle="collapse" style="font-size:20px; font-weight: 500;" data-target="#collapseThree4" aria-expanded="false" aria-controls="collapseThree4">
+                                 				#7. 친구는 ㅇㅇ체인점에서 사용했다는데, 저는 사용이 안 되었어요.
+                                             	</button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseThree4" class="collapse" aria-labelledby="headingThree4" data-parent="#accordion">
+                                            <div class="card-body" style="text-align:center;">아동돌봄쿠폰은 지역에 있는 주요 체인점의 경우에도 사용이 가능합니다. <br>그러나, 카드매출 기준으로 지역제한이 적용되는 특성 때문에 만약 당해 업소의 카드 매출이 타지역에 있는 본사로 되어 있는 경우 당해 업소에서는 포인트 사용이 제한됩니다.
+                                        	</div>
+                                    	</div>
+                                	</div>
+                                	<div class="card">
+                                        <div class="card-header" id="headingThree5">
+                                            <h5 class="mb-0">
+                            					<button class="btn btn-link collapsed" data-toggle="collapse" style="font-size:20px; font-weight: 500;" data-target="#collapseThree5" aria-expanded="false" aria-controls="collapseThree5">
+                                 				#8. 결제 취소가 가능한가요?
+                                             	</button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseThree5" class="collapse" aria-labelledby="headingThree5" data-parent="#accordion">
+                                            <div class="card-body" style="text-align:center;">일반카드의 경우처럼 포인트로 결제한 거래의 취소도 가능합니다. <br>결제에 대한 의문이 있으신 경우에는 각 카드사의 고객센터를 통해 문의하실 수 있습니다. 아동돌봄쿠폰 전자상품권은 농협, 롯데, 비씨, 삼성, 신한, 우리, 하나, KB국민 8개 주요 카드사를 통해 지급되고 있습니다. <br>돌봄포인트를 지급받은 카드가 어떤 카드사인지 확인하세요.<br> BC카드는 13개 참여은행사(우리, 기업, 농협, SC제일, 대구, 부산, 경남, 전북, 광주, 제주, 우체국, 수협, 신협)를 포함하고 있습니다.
+                                        	</div>
+                                    	</div>
+                                	</div>
+                            	</div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end valifation types -->
+                        <!-- ============================================================== -->
+                    </div>           
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="../assets/vendor/parsley/parsley.js"></script>
+    <script src="../assets/libs/js/main-js.js"></script>
+    <script src="../assets/vendor/datepicker/datepicker.js"></script>
+    <script src="../assets/vendor/datepicker/moment.js"></script>
+    <script src="../assets/vendor/datepicker/tempusdominus-bootstrap-4.js"></script>
+    <script src="../assets/vendor/multi-select/js/jquery.multi-select.js"></script>
+    <script src="../assets/vendor/select2/js/select2.min.js"></script>
+    <script src="../assets/vendor/summernote/js/summernote-bs4.js"></script>
+    
+    <script>
+    $('#form').parsley();
+    </script>
+    <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+    </script>
+    <script>
+    $('#my-select, #pre-selected-options').multiSelect()
+    </script>
+    <script>
+    $('#callbacks').multiSelect({
+        afterSelect: function(values) {
+            alert("Select value: " + values);
+        },
+        afterDeselect: function(values) {
+            alert("Deselect value: " + values);
+        }
+    });
+    </script>
+    <script>
+    $('#keep-order').multiSelect({ keepOrder: true });
+    </script>
+    <script>
+    $('#public-methods').multiSelect();
+    $('#select-all').click(function() {
+        $('#public-methods').multiSelect('select_all');
+        return false;
+    });
+    $('#deselect-all').click(function() {
+        $('#public-methods').multiSelect('deselect_all');
+        return false;
+    });
+    $('#select-100').click(function() {
+        $('#public-methods').multiSelect('select', ['elem_0', 'elem_1'..., 'elem_99']);
+        return false;
+    });
+    $('#deselect-100').click(function() {
+        $('#public-methods').multiSelect('deselect', ['elem_0', 'elem_1'..., 'elem_99']);
+        return false;
+    });
+    $('#refresh').on('click', function() {
+        $('#public-methods').multiSelect('refresh');
+        return false;
+    });
+    $('#add-option').on('click', function() {
+        $('#public-methods').multiSelect('addOption', { value: 42, text: 'test 42', index: 0 });
+        return false;
+    });
+    </script>
+    <script>
+    $('#optgroup').multiSelect({ selectableOptgroup: true });
+    </script>
+    <script>
+    $('#disabled-attribute').multiSelect();
+    </script>
+    <script>
+    $('#custom-headers').multiSelect({
+        selectableHeader: "<div class='custom-header'>Selectable items</div>",
+        selectionHeader: "<div class='custom-header'>Selection items</div>",
+        selectableFooter: "<div class='custom-header'>Selectable footer</div>",
+        selectionFooter: "<div class='custom-header'>Selection footer</div>"
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({ tags: true });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 300
+
+        });
+    });
+    </script>    
+</body>
+ 
+</html>

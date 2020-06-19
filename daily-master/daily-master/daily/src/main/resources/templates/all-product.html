@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <head th:include="head :: head"> </head>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <header th:include="header :: header"> </header>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <sidebar th:include="sidebar :: sidebar"> </sidebar>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+                        <h5 class="card-header">상품목록</h5>
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12" th:if="${ #lists.size(products) } > 0" th:each="product : ${ products }">
+                                    <div class="product-thumbnail">
+                                        <div class="product-img-head">
+                                            <div class="product-img">
+                                                <a th:href="@{detail-product(pno=${ product.pno })}"><img src="assets/images/eco-product-img-1.png" alt="" class="img-fluid"></a></div>
+                                        </div>
+                                        <div class="product-content">
+                                            <div class="product-content-head">
+                                            	<a th:href="@{detail-product(pno=${ product.pno })}"><h5 th:text="${product.content1}"></h5></a>   
+                                            	<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 1 }" >제습│청소 ─ 제습제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 2 }" >제습│청소 ─ 베이킹소다|구연산</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 3 }" >제습│청소 ─ 곰팡이제거제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 4 }" >제습│청소 ─ 락스|배수구세정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 1} and ${product.category2 == 5 }" >제습│청소 ─ 변기세정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 6 }" >주방│세탁 ─ 세탁세제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 7 }" >주방│세탁 ─ 세탁조세정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 8 }" >주방│세탁 ─ 주방세제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 2} and ${product.category2 == 9 }" >주방│세탁 ─ 주방잡화</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 10 }" >구강│청결 ─ 치약</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 11 }" >구강│청결 ─ 칫솔</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 12 }" >구강│청결 ─ 구강청정제</h3>
+												<h3 class="product-title" th:if="${product.category1 == 3} and ${product.category2 == 13 }" >구강│청결 ─ 핸드워시</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 14 }" >뷰티│케어 ─ 핸드크림</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 15 }" >뷰티│케어 ─ 헤어케어</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 16 }" >뷰티│케어 ─ 시트 마스크</h3>
+												<h3 class="product-title" th:if="${product.category1 == 4} and ${product.category2 == 17 }" >뷰티│케어 ─ 쿨링패치</h3>
+												<h3 class="product-title" th:if="${product.category1 == 5 }" >수납│욕실</h3>
+												<h3 class="product-title" th:if="${product.category1 == 6 }" >식품</h3>
+                                            	<a th:href="@{detail-product(pno=${ product.pno })}"><h3 th:text="${product.pname}"></h3></a>                                 
+                                                <div class="product-rating d-inline-block">
+                                                	<div th:if="${product.star == 0}">
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${product.star == 1}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${product.star == 2}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                	<div th:if="${product.star == 3}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                    <div th:if="${product.star == 4}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="far fa-star"></i>
+	                                                    </div>
+	                                                    <div th:if="${product.star == 5}">
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    <i class="fa fa-fw fa-star"></i>
+	                                                    </div>
+                                                </div>
+                                                <div class="product-price" th:text="${product.price}+원" style="text-decoration:line-through;"></div>
+                                                <div class="product-price" th:text="${product.saleprice}+원" style="margin-top: 25px; font-size:25px; font-weight: 900; color: black;"></div>
+                                            </div>
+                                            <div class="product-btn">
+                                            	<a th:href="@{all-product1(pno=${ product.pno })}" th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2} and ${product.pactive == 9}" class="btn btn-primary mt-3" style="font-size:15px">상품승인하기</a>
+                                                <!-- <a href="#" class="btn btn-outline-light">자세히 보기</a>
+                                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item active"><a class="page-link " href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
+                        <h5 class="card-header">검색</h5>
+                            <div class="product-sidebar">
+                                <div class="product-sidebar-widget">
+                                    <h4 class="product-sidebar-widget-title">카테고리</h4>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 1} and ${product.category2 == 1 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-1">
+                                        <label class="custom-control-label" for="cat-1">제습제</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 1} and ${product.category2 == 2 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-2">
+                                        <label class="custom-control-label" for="cat-2">베이킹소다|구연산</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 1} and ${product.category2 == 3 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-3">
+                                        <label class="custom-control-label" for="cat-3">곰팡이제거제</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 1} and ${product.category2 == 4 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-4">
+                                        <label class="custom-control-label" for="cat-4">락스|배수구세정제</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 1} and ${product.category2 == 5 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-5">
+                                        <label class="custom-control-label" for="cat-5">변기세정제</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 2} and ${product.category2 == 6 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-6">
+                                        <label class="custom-control-label" for="cat-6">세탁세제</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 2} and ${product.category2 == 7 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-7">
+                                        <label class="custom-control-label" for="cat-7">세탁조세정제</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 2} and ${product.category2 == 8 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-8">
+                                        <label class="custom-control-label" for="cat-8">주방세제</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 2} and ${product.category2 == 9 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-9">
+                                        <label class="custom-control-label" for="cat-9">주방잡화</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 3} and ${product.category2 == 10 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-10">
+                                        <label class="custom-control-label" for="cat-10">치약</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 3} and ${product.category2 == 11 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-11">
+                                        <label class="custom-control-label" for="cat-11">칫솔</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 3} and ${product.category2 == 12 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-12">
+                                        <label class="custom-control-label" for="cat-12">구강청정제</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 3} and ${product.category2 == 13 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-13">
+                                        <label class="custom-control-label" for="cat-13">핸드워시</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 4} and ${product.category2 == 14 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-14">
+                                        <label class="custom-control-label" for="cat-14">핸드크림</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 4} and ${product.category2 == 15 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-15">
+                                        <label class="custom-control-label" for="cat-15">헤어케어</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 4} and ${product.category2 == 16 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-16">
+                                        <label class="custom-control-label" for="cat-16">시트 마스크</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 4} and ${product.category2 == 17 }">
+                                        <input type="checkbox" class="custom-control-input" id="cat-17">
+                                        <label class="custom-control-label" for="cat-17">쿨링패치</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 5}">
+                                        <input type="checkbox" class="custom-control-input" id="cat-18">
+                                        <label class="custom-control-label" for="cat-18">수납│욕실</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.category1 == 6}">
+                                        <input type="checkbox" class="custom-control-input" id="cat-19">
+                                        <label class="custom-control-label" for="cat-19">식품</label>
+                                    </div>
+                                </div>
+                                <div class="product-sidebar-widget">
+                                    <h4 class="product-sidebar-widget-title">사이즈</h4>
+                                    <div class="custom-control custom-checkbox" th:if="${product.size == 'Small'}">
+                                        <input type="checkbox" class="custom-control-input" id="size-1">
+                                        <label class="custom-control-label" for="size-1">Small</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.size == 'Medium'}">
+                                        <input type="checkbox" class="custom-control-input" id="size-2">
+                                        <label class="custom-control-label" for="size-2">Medium</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.size == 'Large'}">
+                                        <input type="checkbox" class="custom-control-input" id="size-3">
+                                        <label class="custom-control-label" for="size-3">Large</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox" th:if="${product.size == 'Extra Large'}">
+                                        <input type="checkbox" class="custom-control-input" id="size-4">
+                                        <label class="custom-control-label" for="size-4">Extra Large</label>
+                                    </div>
+                                </div>
+                                <div class="product-sidebar-widget">
+                                    <h4 class="product-sidebar-widget-title">색상</h4> 
+                                    <div class="custom-control custom-radio custom-color-blue " th:if="${product.color == '파랑'}">
+                                        <input type="radio" id="color-1" name="customRadio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-1">파랑</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-red " th:if="${product.color == '노랑'}">
+                                        <input type="radio" id="color-2" name="customRadio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-2">노랑</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-yellow " th:if="${product.color == '빨강'}">
+                                        <input type="radio" id="color-3" name="customRadio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-3">빨강</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black " th:if="${product.color == '초록'}">
+                                        <input type="radio" id="color-4" name="customRadio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-4">초록</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black " th:if="${product.color == '주황'}">
+                                        <input type="radio" id="color-5" name="customRadio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-5">주황</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black " th:if="${product.color == '남색'}">
+                                        <input type="radio" id="color-6" name="customRadio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-6">남색</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-color-black " th:if="${product.color == '보라'}">
+                                        <input type="radio" id="color-7" name="customRadio" class="custom-control-input">
+                                        <label class="custom-control-label" for="color-7">보라</label>
+                                    </div>
+                                </div>
+                                <div class="product-sidebar-widget">
+                                    <h4 class="product-sidebar-widget-title">금액</h4>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="price-1">
+                                        <label class="custom-control-label" for="price-1">1만원대</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="price-2">
+                                        <label class="custom-control-label" for="price-2">50만원대</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="price-3">
+                                        <label class="custom-control-label" for="price-3">100만원대</label>
+                                    </div>
+                                </div>
+                                <div class="product-sidebar-widget">
+                                    <a href="#" class="btn btn-outline-light">필터 재적용</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end wrapper  -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+        <!-- ============================================================== -->
+        <!-- end main wrapper  -->
+        <!-- ============================================================== -->
+        <!-- Optional JavaScript -->
+        <!-- jquery 3.3.1 -->
+        <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+        <!-- bootstap bundle js -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <!-- slimscroll js -->
+        <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+        <!-- main js -->
+        <script src="assets/libs/js/main-js.js"></script>
+</body>
+ 
+</html>

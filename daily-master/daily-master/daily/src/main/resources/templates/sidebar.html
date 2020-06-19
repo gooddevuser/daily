@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <head th:include="head :: head"> </head>   
+</head>
+
+<body>
+<sidebar th:fragment="sidebar">
+<style type="text/css">
+input#username.form-control.form-control-lg::placeholder { color:black !important; }
+input#password.form-control.form-control-lg::placeholder { color:black !important; }
+</style>
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                        	<li class="nav-divider">상품페이지
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="all-product?category1=1" data-toggle="collapse" aria-expanded="false" data-target="#submenu-0-1" aria-controls="submenu-0-1">제습│청소<span class="badge badge-success">6</span></a>
+                                <div id="submenu-0-1" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-product?category1=1&category2=1">제습제</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-product?category1=1&category2=2">베이킹소다 | 구연산</a>
+                                        </li> 
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-product?category1=1&category2=3">곰팡이제거제</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-product?category1=1&category2=4">락스 | 배수구세정제</a>
+                                        </li> 
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-product?category1=1&category2=5">변기세정제</a>
+                                        </li> 
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="all-product?category1=2" data-toggle="collapse" aria-expanded="false" data-target="#submenu-0-2" aria-controls="submenu-0-2">주방│세탁<span class="badge badge-success">6</span></a>
+                                <div id="submenu-0-2" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">               
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-product?category1=2&category2=6">세탁세제</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-product?category1=2&category2=7">세탁조세정제</a>
+                                        </li> 
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-product?category1=2&category2=8">주방세제</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-product?category1=2&category2=9">주방잡화</a>
+                                        </li> 
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="all-product?category1=3" data-toggle="collapse" aria-expanded="false" data-target="#submenu-0-3" aria-controls="submenu-0-3">구강│청결<span class="badge badge-success">6</span></a>
+                                <div id="submenu-0-3" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-product?category1=3&category2=10">치약</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-product?category1=3&category2=11">칫솔</a>
+                                        </li> 
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-product?category1=3&category2=12">구강청정제</a>
+                                        </li> 
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-product?category1=3&category2=13">핸드워시</a>
+                                        </li> 
+                                    </ul>
+                                </div>
+                            </li>                            
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="all-product?category1=4" data-toggle="collapse" aria-expanded="false" data-target="#submenu-0-4" aria-controls="submenu-0-4">뷰티│케어<span class="badge badge-success">6</span></a>
+                                <div id="submenu-0-4" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">                    
+                                            <a class="nav-link" href="all-product?category1=4&category2=14">핸드크림</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-product?category1=4&category2=15">헤어케어</a>
+                                        </li> 
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-product?category1=4&category2=16">시트 마스크</a>
+                                        </li> 
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-product?category1=4&category2=17">쿨링패치</a>
+                                        </li>                                         
+                                    </ul>
+                                </div>
+                            </li>   
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="all-product?category1=5&category2=1">수납 │ 욕실</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="all-product?category1=6&category2=1">식품</a>
+                            </li>
+                            <li class="nav-item " style="border: 0px;">
+                                <a class="nav-link active" href="all-products">모든 상품 보기</a>
+                            </li>
+                            <li class="nav-divider" style="margin-top:30px;" th:if="${session.loginuser == null}" >데일리마켓
+                            </li>
+                            <!-- 로그인 -->
+                            <form action="login" method="post" th:if="${session.loginuser == null}">
+			                    <div class="form-group">
+			                        <input class="form-control form-control-lg" id="username" name="id" type="text" placeholder="아이디 입력" autocomplete="off" style="font-weight: bold; color: black;">
+			                    </div>
+			                    <div class="form-group">
+			                        <input class="form-control form-control-lg" id="password" name="pwd" type="password" placeholder="비밀번호 입력" style="font-weight: bold; color: black;">
+			                    </div>
+			                    <div class="form-group">
+			                        <label class="custom-control custom-checkbox">
+			                            <input class="custom-control-input" type="checkbox"><span class="custom-control-label" style="font-weight: bold; color: black;">아이디 기억하기(준비중)</span>
+			                        </label>
+			                    </div>
+			                    <button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
+			                </form>
+                            <!-- 로그인 -->                                                      
+                            <li class="nav-item " style="border: 0px;" th:if="${session.loginuser == null}">
+                                <a class="nav-link active" href="add-user">회원가입 하러가기</a>
+                            </li>
+                        	<li class="nav-divider" style="margin-top:30px;" th:if="${session.loginuser != null} and ${session.loginuser.uactive == 0}">마이페이지
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 0}" >
+                                <a class="nav-link active" href="#"data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1" th:text="${session.loginuser.nickname}+님"><span class="badge badge-success">6</span></a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item" >
+                                            <a class="nav-link" href="logout">로그아웃</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" th:href="@{edit-user(uno=${ session.loginuser.uno })}">나의 정보수정</a>
+                                        </li> 
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 0}" >
+                                <a class="nav-link active" th:href="@{all-userpoint-user(uno=${ session.loginuser.uno })}" >나의 포인트</a>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 0}" >
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2">고객센터<span class="badge badge-success">6</span></a>
+                                <div id="submenu-2" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item" >
+                                            <a class="nav-link" th:href="@{add-qna(uno=${ session.loginuser.uno })}">1:1문의하기</a>
+                                        </li>                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" th:href="@{all-qna-user(uno=${ session.loginuser.uno })}">나의 문의내역</a>
+                                        </li> 
+                                        <li class="nav-item" style="border: 0px;" >
+                                            <a class="nav-link" href="faq">자주묻는질문</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 0}" >
+                                <a class="nav-link active" href="#">즐겨찾기(진행중)</a>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 0}" >
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3">마이페이지<span class="badge badge-success">6</span></a>
+                                <div id="submenu-3" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" th:href="@{all-order-user1(uno=${ session.loginuser.uno })}">나의 주문배송조회</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" th:href="@{all-order-user2(uno=${ session.loginuser.uno })}">취소 │ 교환 │ 반품 조회</a>
+                                        </li> 
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">할인쿠폰(진행중)</a>
+                                        </li> 
+                                        <li class="nav-item">
+                                            <a class="nav-link" th:href="@{all-userpoint-user(uno=${ session.loginuser.uno })}">포인트</a>
+                                        </li> 
+                                        <li class="nav-item">
+                                            <a class="nav-link" th:href="@{all-review-user(uno=${ session.loginuser.uno })}">나의 구매후기</a>
+                                        </li> 
+                                        <li class="nav-item">
+                                            <a class="nav-link" th:href="@{add-review(uno=${ session.loginuser.uno })}">구매후기작성하기</a>
+                                        </li> 
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" th:href="@{edit-user(uno=${ session.loginuser.uno })}">회원정보수정</a>
+                                        </li> 
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-divider" style="margin-top:30px;" th:if="${session.loginuser != null} and ${session.loginuser.uactive == 8} or ${session.loginuser != null} and ${session.loginuser.uactive == 9}">마이페이지
+                            </li>
+                            <div class="nav-link active" th:if="${session.loginuser != null} and ${session.loginuser.uactive == 8} or ${session.loginuser != null} and ${session.loginuser.uactive == 9}" href="#">유저 승인 중 입니다.</div>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 8} or ${session.loginuser != null} and ${session.loginuser.uactive == 9}" >
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1" th:text="${session.loginuser.nickname}+님"><span class="badge badge-success">6</span></a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item" >
+                                            <a class="nav-link" href="logout">로그아웃</a>
+                                        </li>
+                                        <li class="nav-item" style="border:0px;">
+                                            <a class="nav-link" th:href="@{edit-user(uno=${ session.loginuser.uno })}">정보수정</a>
+                                        </li> 
+                                    </ul>
+                                </div>                                
+                            </li>
+                            <!-- 
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 0}">
+                                <a class="nav-link active" th:href="@{add-order(uno=${ session.loginuser.uno })}">나의 장바구니</a>
+                            </li> -->
+                        	<li class="nav-divider" style="margin-top:30px;" th:if="${session.loginuser != null} and ${session.loginuser.uactive == 1}">판매자페이지
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 1}" >
+                                <a class="nav-link active" href="#"data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1" th:text="${session.loginuser.nickname}+님"><span class="badge badge-success">6</span></a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item" >
+                                            <a class="nav-link" href="logout">로그아웃</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" th:href="@{edit-user(uno=${ session.loginuser.uno })}">정보수정</a>
+                                        </li> 
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 1}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">상품관리<span class="badge badge-success">6</span></a>
+                                <div id="submenu-4" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-products-admin">상품조회</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="add-product">상품등록</a>
+                                        </li> 
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 1}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-29" aria-controls="submenu-29">주문관리<span class="badge badge-success">6</span></a>
+                                <div id="submenu-29" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-order">주문조회</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 1}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6">배너관리(진행중)<span class="badge badge-success">6</span></a>
+                                <div id="submenu-6" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-banner">배너조회(진행중)</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="add-banner">배너등록(진행중)</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 1}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7">메일관리(진행중)<span class="badge badge-success">6</span></a>
+                                <div id="submenu-7" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-user-noticemail">공지메일조회(진행중)</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="add-user-noticemail">공지메일보내기(진행중)</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 1}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8">문의관리<span class="badge badge-success">6</span></a>
+                                <div id="submenu-8" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-qna">문의조회</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-qna-answer">문의답변조회</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 1}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9">후기관리<span class="badge badge-success">6</span></a>
+                                <div id="submenu-9" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-review">후기조회</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-review-answer">후기답변조회</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item "  style="margin-bottom: 50px;" th:if="${session.loginuser != null} and ${session.loginuser.uactive == 1}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-10" aria-controls="submenu-10">포인트관리<span class="badge badge-success">6</span></a>
+                                <div id="submenu-10" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-userpoint">회원포인트조회</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="add-userpoint">회원포인트지급</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-divider" style="margin-top:30px;" th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2}">관리자페이지
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2}" >
+                                <a class="nav-link active" href="#"data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1" th:text="${session.loginuser.nickname}+님"><span class="badge badge-success">6</span></a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item" >
+                                            <a class="nav-link" href="logout">로그아웃</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" th:href="@{edit-user(uno=${ session.loginuser.uno })}">정보수정</a>
+                                        </li> 
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11">상품관리<span class="badge badge-success">6</span></a>
+                                <div id="submenu-11" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-products-admin">상품조회</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-30" aria-controls="submenu-30">주문관리<span class="badge badge-success">6</span></a>
+                                <div id="submenu-30" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-order">주문조회</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12">회원관리<span class="badge badge-success">6</span></a>
+                                <div id="submenu-12" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-user">회원조회</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-13" aria-controls="submenu-13">배너관리(진행중)<span class="badge badge-success">6</span></a>
+                                <div id="submenu-13" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-banner">배너조회(진행중)</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-14" aria-controls="submenu-14">메일관리(진행중)<span class="badge badge-success">6</span></a>
+                                <div id="submenu-14" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-user-noticemail">공지메일조회(진행중)</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="add-user-noticemail">공지메일보내기(진행중)</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-15" aria-controls="submenu-15">문의관리<span class="badge badge-success">6</span></a>
+                                <div id="submenu-15" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-qna">문의조회</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-qna-answer">문의답변조회</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-16" aria-controls="submenu-16">후기관리<span class="badge badge-success">6</span></a>
+                                <div id="submenu-16" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-review">후기조회</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="all-review-answer">후기답변조회</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item " th:if="${session.loginuser != null} and ${session.loginuser.uactive == 2}">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-17" aria-controls="submenu-17">포인트관리<span class="badge badge-success">6</span></a>
+                                <div id="submenu-17" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="all-userpoint">회원포인트조회</a>
+                                        </li>
+                                        <li class="nav-item" style="border: 0px;">
+                                            <a class="nav-link" href="add-userpoint">회원포인트지급</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <!-- 
+                            <li class="nav-divider" style="margin-top:30px;">부트스트랩1
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-18" aria-controls="submenu-18">대시보드 <span class="badge badge-success">6</span></a>
+                                <div id="submenu-18" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-19" aria-controls="submenu-19">상품 보기</a>
+                                            <div id="submenu-19" class="collapse submenu" style="">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="index">대시보드</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="ecommerce-product">상품 목록 - 리스트</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="ecommerce-product-single">상품 디테일 - 디테일</a>
+                                                    </li>
+                                                    <li class="nav-item" style="border: 0px;">
+                                                        <a class="nav-link" href="ecommerce-product-checkout">상품 결제하기 - 추가</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-20" aria-controls="submenu-20">임시</a>
+                                            <div id="submenu-20" class="collapse submenu" style="">
+                                                <ul class="nav flex-column">
+                                                	<li class="nav-item">
+                                                        <a class="nav-link" href="A-main">메인페이지</a>
+                                                    </li><li class="nav-item">
+                                                        <a class="nav-link" href="all-order">주문 목록</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="all-user">유저 목록</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="all-product">상품 목록</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="all-qna">문의글 목록</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="all-review">후기 목록</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="all-banner">배너 목록</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="all-user-noticemail">공지메일 목록</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="all-userpoint">회원 포인트 목록</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="all-qna-answer">문의글답변 목록</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="all-review-answer">후기답변 목록</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="add-order">주문 추가</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="add-user">유저 추가</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="add-product">상품 추가</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="add-qna">문의글 추가</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="add-review">후기 추가</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="add-banner">배너 추가</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="add-user-noticemail">공지메일 추가</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="add-userpoint">회원 포인트 추가</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="add-qna-answer">문의글답변 추가</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="add-review-answer">후기답변 추가</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="edit-order">주문 수정</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="edit-user">유저 수정</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="edit-product?pno=24">상품 수정</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="edit-qna">문의글 수정</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="edit-review">후기 수정</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="edit-banner">배너 수정</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="edit-user-noticemail">공지메일 수정</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="edit-userpoint">회원 포인트 수정</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="edit-qna-answer">문의글답변 수정</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="edit-review-answer">후기답변 수정</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="edit-order">주문 디테일 및 수정</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="edit-user">상품 디테일 및 수정</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="dashboard-finance">재무관리</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="dashboard-sales">영업관리</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-21" aria-controls="submenu-21">마이 페이지</a>
+                                            <div id="submenu-21" class="collapse submenu" style="">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="dashboard-influencer">마이 페이지</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="influencer-finder">유저 검색 - 리스트</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="influencer-profile">유저 디테일 - 디테일</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-22" aria-controls="submenu-22">태그 스타일</a>
+                                <div id="submenu-22" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="cards">카드 <span class="badge badge-secondary">New</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="general">일반</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="carousel">슬라이드배너</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="listgroup">리스트</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="typography">타이포그래피</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="accordions">아코디언</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="tabs">탭</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-23" aria-controls="submenu-23">차트</a>
+                                <div id="submenu-23" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chart-c3">C3차트</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chart-chartist">차트리스트</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chart-charts">차트</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chart-morris">메모리즈 차트</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chart-sparkline">라인 차트</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chart-gauge">게이지 차트</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-24" aria-controls="submenu-24">폼 태그</a>
+                                <div id="submenu-24" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="form-elements">폼 태그</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="form-validation">유효성 검사</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="multiselect">다중 선택</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="datepicker">날짜 선택기</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="bootstrap-select">부트 스트랩 선택</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-25" aria-controls="submenu-25">테이블</a>
+                                <div id="submenu-25" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="general-table">일반 테이블</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="data-tables">데이터 테이블</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-divider">부트스트랩2
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-26" aria-controls="submenu-26">페이지 </a>
+                                <div id="submenu-26" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="blank-page">빈 페이지</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="blank-page-header">빈 페이지 헤더</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="login">로그인</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="sign-up">가입 페이지</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="forgot-password">비밀번호를 잊으셨나요</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="pricing">가격표</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="timeline">타임라인</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="calendar">달력</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="sortable-nestable-lists">정렬 가능 / 사용 가능 목록</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="widgets">위젯</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="media-object">미디어 객체</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="cropper-image">농작물</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="color-picker">색상 선택기</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-27" aria-controls="submenu-27">메일함 <span class="badge badge-secondary">New</span></a>
+                                <div id="submenu-27" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="inbox">메일함 - 리스트</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="email-details">메일 디테일 - 디테일</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="email-compose">메일 보내기 - 추가</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="message-chat">메시지 채팅</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-28" aria-controls="submenu-28">아이콘</a>
+                                <div id="submenu-28" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="icon-fontawesome">FontAwesome 아이콘</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="icon-material">소재 아이콘</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="icon-simple-lineicon">간단한 아이콘</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="icon-themify">테마 아이콘</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="icon-flag">플래그 아이콘</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="icon-weather">날씨 아이콘</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-29" aria-controls="submenu-29">지도</a>
+                                <div id="submenu-29" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="map-google">구글 맵</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="map-vector">벡터 맵</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-30" aria-controls="submenu-30">메뉴 레벨</a>
+                                <div id="submenu-30" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">레벨 1</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-31" aria-controls="submenu-31">레벨 2</a>
+                                            <div id="submenu-31" class="collapse submenu" style="">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">레벨 1</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">레벨 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">레벨 3</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+</sidebar>
+    <!-- Optional JavaScript -->
+    <!-- jquery 3.3.1 -->
+    <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- main js -->
+    <script src="assets/libs/js/main-js.js"></script>
+    <!-- chart chartist js -->
+    <script src="assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
+    <!-- sparkline js -->
+    <script src="assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
+    <!-- morris js -->
+    <script src="assets/vendor/charts/morris-bundle/raphael.min.js"></script>
+    <script src="assets/vendor/charts/morris-bundle/morris.js"></script>
+    <!-- chart c3 js -->
+    <script src="assets/vendor/charts/c3charts/c3.min.js"></script>
+    <script src="assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+    <script src="assets/vendor/charts/c3charts/C3chartjs.js"></script>
+    <script src="assets/libs/js/dashboard-ecommerce.js"></script>
+</body>
+ 
+</html>
